@@ -52,7 +52,7 @@ public class Door extends JPanel
         this.y = 50;
         this.width = 200;
         //drawin the image of the door 
-        doorImage = new ImageIcon (getClass().getResource("door.jpg"));
+        doorImage = new ImageIcon (getClass().getResource("images/door.jpg"));
         //putting the image in a label
         label = new JLabel(doorImage);
         //adding the label in the panel
@@ -107,12 +107,12 @@ public class Door extends JPanel
     {
         if(hasLover == true)
         {
-        loverImage = new ImageIcon (getClass().getResource("loverImage.png"));
+        loverImage = new ImageIcon (getClass().getResource("images/loverImage.png"));
         label1 = new JLabel(loverImage);    
         }
         else 
         {
-        tigerImage = new ImageIcon (getClass().getResource("tigerImage.png"));
+        tigerImage = new ImageIcon (getClass().getResource("images/tigerImage.png"));
         label2 = new JLabel(tigerImage);       
         }
     }
