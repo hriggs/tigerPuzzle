@@ -1,0 +1,25 @@
+
+1. First Trial:
+The sign on door one says, In this room their is one of your true loves, and in
+the other room there is a tiger.
+The sign on door two says, In one of these rooms there sits one of your true loves, and in one of these rooms there is a tiger.
+The evil jailer, who curiosly never lies, adds that one of the statements is true and one is false! What should the prisoner do?
+
+2. Second Trial:
+The statement on door one says, At least one of these rooms contains a true
+love.”
+The statement on door two says, A tiger is in the other room. The evil jailer, who curiosly never lies, adds that
+the two statements are either both true or both false.
+Which door should the prisoner open in order to avoid being eaten alive and find a true love?
+
+3. The Third Trial:
+The statement on door one says, Either a tiger is in this room or your true love
+is in the other room.
+The statement on door two says, There is a tiger in one room and your true love in the other room.
+Again, the jailer claims that either both are true or both are false. Which should the prisoner open?
+
+4. The Fourth Trial:
+The sign on the first door says, At least one room contains a true love.
+The sign on the second door says, This room contains a tiger.
+As the puzzled prisoner reads these signs, the jailer laughs and says: If a true love is behind door one, the sign on that door is true, otherwise it is false!
+Help out the prisoner! What choice should the prisoner make?

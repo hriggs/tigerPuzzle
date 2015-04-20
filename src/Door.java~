@@ -7,23 +7,22 @@ import java.awt.geom.*;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.Color;
-import javax.imageio.ImageIO;
 
 /**
  * Door Class is part of the implementation of the Tiger Puzzle application
  * creates a label with a image call door, each object door will be able to draw it self
  * it will be display a text for the user instructions, wich is read from a file
  * 
- * @author (Maria, Henrique, Hannah) 
+ * @author (Hannah, Henrique, Maria) 
  * @version (2015-04-16)
  */
 public class Door extends JPanel
 {
     // instance variables
     //Variable for the position of the door and the size
-    /*private int x;
-    private int y;*/
-    //private int  width;
+    private int x;
+    private int y;
+    private int  width;
     //variable to hold the statment for the user to read
     private String text;
     // text area where the statements are printing 
@@ -44,9 +43,9 @@ public class Door extends JPanel
      */
     public Door(int x, int y, int width, int heigh)
     {
-        /*this.x = x;
-        this.y = y;*/
-       // this.width = width;// width for the image
+        this.x = x;
+        this.y = y;
+        this.width = width;// width for the image
         //this.doorImage = image;
     }
     
@@ -55,48 +54,42 @@ public class Door extends JPanel
      */
     public Door()
     {
-        /*this.x = 50;
-        this.y = 50;*/
-        //this.width = 200;
+        this.x = 50;
+        this.y = 50;
+        this.width = 200;
         //drawin the image of the door 
-        try { 
-            // gave me errors due to the file path and I wasn't sure how to fix it, so I switched to code below
-            //doorImage = new ImageIcon (getClass().getResource("door.jpg"));
-            doorImage = new ImageIcon("./images/door.jpg");
-        }
-        catch (Exception e) {
-            System.out.println("Door image file not found");
-        }
-        
+        doorImage = new ImageIcon (getClass().getResource("door.jpg"));
         //putting the image in a label
         label = new JLabel(doorImage);
         //adding the label in the panel
         add(label);
+        
+        
     }
 
     /**
      * returns the x position where the image was draw
      */
-    /*public int getX()
+    public int getX()
     {
         return x;
-    }*/
+    }
     
     /**
      * returns the x position where the image was draw
      */
-    /*public int getY()
+    public int getY()
     {
         return y;
-    }*/
+    }
     
     /**
      * returns the width of the image in the label 
      */
-    /*public int getWidth()
+    public int getWidth()
     {
        return width;
-    }*/
+    }
     
     /**
      * returns the image of the door
@@ -109,11 +102,11 @@ public class Door extends JPanel
     /**
      * sets the x and y position where the image is being draw
      */
-    /*public void setPosition(int x, int y)
+    public void setPosition(int x, int y)
     {
        this.x = x; 
        this.y = y; 
-    }*/
+    }
     
     /**
      * Draws a diferent image when the door is open
@@ -133,7 +126,7 @@ public class Door extends JPanel
     }
     
     /**
-     * to pass the text
+     * to pass the test
      */
     public void setText()
     {

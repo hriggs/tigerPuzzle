@@ -1,3 +1,5 @@
+
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -16,51 +18,45 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class Jailer extends JPanel{
-    private String jailerSpeech, trialSpeech;
+public class Jailer extends JFrame{
+    private String jailerSpeech;
     private JLabel label1,label2;
-    private JTextArea text1, trialArea;
+    private JPanel panel1;
+    private JTextArea text1;
     private BufferedImage img1 = null;
     private String tigerFile;
-    private int x, y; 
     
-/**
- * The Jailer class... To do: Description here
- * 
- * @author (Henrique, Maria, Hannah) 
- * @version (2015-04-16)
- */
+     
     public Jailer(){
-      
-      x = 100;
-      y = 100; 
         
-       trialSpeech = "";
        jailerSpeech="";
        tigerFile="./text/tiger_puzzle.txt";
        readFile(tigerFile);
+       panel1= new JPanel();
         try { 
             img1 = ImageIO.read(new File("./images/master_2.gif"));
         }
         catch (Exception e) {
             System.out.println("Image file not found");
         }
-        label1 = new JLabel(new ImageIcon(img1));
+         label1 = new JLabel(new ImageIcon(img1));
         
-        text1= new JTextArea(jailerSpeech);
-        text1.setFont(new Font("Serif", Font.BOLD, 10));
-        text1.setEditable(false);
-        text1.setForeground(Color.BLACK);
-        text1.setBounds(10, 10, 50, 110);
-        text1.setWrapStyleWord(true);
-        text1.setLineWrap(true);
-        text1.setSize(300, 300); 
+         text1= new JTextArea(jailerSpeech);
+         text1.setFont(new Font("Serif", Font.BOLD, 12));
+         text1.setEditable(false);
+         text1.setForeground(Color.BLACK);
+         text1.setBounds(10, 10, 50, 110);
         
-        // set Layout and arrange components
-        setLayout(new BorderLayout());
-        add(text1, BorderLayout.NORTH);
-        add(label1, BorderLayout.CENTER);
-        //add(new JTextArea(trialSpeech), BorderLayout.SOUTH);
+         panel1.add(text1);
+         panel1.add(label1);
+       
+       add(panel1,BorderLayout.CENTER);
+       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       setSize(900,700);
+       setVisible(true);
+ 
+         
+
      }
   
     public void readFile(String fileName)
@@ -105,15 +101,9 @@ public class Jailer extends JPanel{
                 jailerSpeech += line + "\n";
             }
         }
-    }
+
     
-    /**
-     * Sets the trial text of the jailer.
-     * 
-     * @param  speech  the trial speech text
-     */
-    public void setTrialText(String speech) {
-      add(new JTextArea(speech), BorderLayout.SOUTH);
+    
     }
   
 }
