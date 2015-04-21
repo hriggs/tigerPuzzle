@@ -1,0 +1,69 @@
+REQUIREMENTS: “Tiger Puzzle” 
+
+Maria del Mar Moncaleano
+Henrique Aguiar
+Hannah Riggs
+
+
+General Description:
+The Tiger Puzzle game shall be developed to provide a graphical interface in which the user (playing as “the prisoner”) is going to attempt to solve a number of logic puzzles. Each puzzle is considered a “trial.” As a whole, this game is called the “Tiger Puzzle.”  The user has to click on one of two doors. Behind each of the two doors there will either be a tiger or a lover. 
+	
+The goal the Tiger Puzzle is that the user shall be able to find a solution (find the door(s) the “lover” is behind) by following the directions of the jailer and taking into account the statements associated with each door. If the user can pass all trials successfully, s/he will escape from the evil jailer and dungeon. 
+
+Functionality:  
+When the user runs the “Tiger Puzzle “ program, a window with a graphical interface will be displayed to the user.
+
+The data will be read and loaded into the program when the game is initialized. It will be read from a text file. 
+
+The graphical interface will consist of the following;
+It shall have two door images with text statements under each door associated with the trial that is currently being displayed. Each door shall be marked as either “door #1” or “door #2”
+It shall have a jailer image. The jailer instructions shall be displayed at the top of his image and a statement of the jailer's relating to the current trial beneath him. 
+If the user doesn't want to open either of the doors s/he will be able to use a “REFUSE” button which will signal that s/he choose to open neither door.
+It shall display a “START OVER”  button to reset the game. This will allow the user to solve all the puzzles, starting at the first trial, again. 
+It shall display a “NEXT TRIAL” button which will allow the user to continue to the next trial/puzzle. 
+It shall have a “SHOW ANSWER” button which will open both doors and show what is behind each of them.
+It shall display the instructions of the game in the bottom panel of the window. 
+It shall display the player's score: how many puzzles the user has solved both correctly and incorrectly. 
+It shall display the number of the trial that the user is playing. 
+
+
+I think we can take these 2 statements out as they are explained above...?
+
+The right side of the graphical interface shall have a section for the Jailer, which is a Text Field that prints the instructions that Jailer give to the user, the actual trial at the bottom of the Jailer and the image of the jailer.
+
+The bottom of the graphical interface shall have three buttons to interact for the user with the game:
+NEXT TRIAL button
+START OVER button
+SHOW ANSWER button
+REFUSE button
+
+To win the game and escape the jailer's dungeon, the user shall solve all of the trial puzzles correctly and never choose a door that has a tiger behind it. 
+
+
+Usability:	
+I think we explained these things already above: according to the slides, usability is “How easy should it be for a user to understand and use the system? How difficult should it be for a user to misuse the system?”
+
+When the Next Trial button is clicked, the system shall display the number of the actual trial that being display and display the statements for each of the doors and the jailer in their respective text areas 
+
+When the Start Over button  is clicked, the user will start the game from the first trial and the score will be 0
+
+When the Refuse button  is clicked, none of the door are open  (here we have to explain well the F and T if match the answer the user will score)
+
+It shall be very easy for the user to understand and use the system. This is due to the fact that there will be directions clearly marked and available for the entire time the program is running. 
+It shall be difficult for the user to misuse the system. This is due to the fact that we shall thoroughly test the program for bugs and cases where the program does not act as it should and correct these errors. 
+
+Data:
+A text file holds the input data for the Tiger Puzzle game. Each file holds the information about the different trials that are going to be displayed in the text areas. 
+
+Reliability:
+
+
+Performance:
+The data from the text file data will be uploaded when the program is started. 
+
+Supportability:
+The puzzle may be extended in the future if more puzzles are added. It will be very easy to add more puzzles due to the fact that the puzzles will be read in through a text file. The person extending the puzzle can simply add more trials to the text file. They must follow the specific format of the text file. 
+The puzzle could also be extended by adding puzzles that have more doors in each puzzle. This will be easy to add as another “Door” object would simply have to be created and drawn. 
+
+
+
