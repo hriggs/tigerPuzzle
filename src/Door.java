@@ -150,10 +150,10 @@ public class Door extends JPanel
         //creatring the text Area zone
         JTextArea txtArea = new JTextArea(5,10);
         txtArea.append(reader());
-        //txtArea.setBackground(Color.blue);
-        txtArea.setFont(new Font("Serif", Font.ITALIC, 20));
-        txtArea.setForeground(new Color(28, 94, 161));
-        //txtArea.setEditable(false);
+        txtArea.setBackground(Color.blue);
+        //txtArea.setFont(new Font("Serif", Font.ITALIC, 20));
+        //txtArea.setForeground(new Color(28, 94, 161));
+        txtArea.setEditable(false);
         //add(txtArea);
         
         Door door = new Door();
