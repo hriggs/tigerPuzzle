@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 /**
  * Door Class is part of the implementation of the Tiger Puzzle application
  * creates a label with a image call door, each object door will be able to draw it self
- * it will be display a text for the user instructions, wich is read from a file
+ * it will be display a text for the user instructions, which is read from a file
  * 
  * @author (Maria, Henrique, Hannah) 
  * @version (2015-04-16)
@@ -46,7 +46,7 @@ public class Door extends JPanel
     {
         /*this.x = x;
         this.y = y;*/
-       // this.width = width;// width for the image
+       // this.width = width;
         //this.doorImage = image;
     }
     

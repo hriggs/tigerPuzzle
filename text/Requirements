@@ -48,6 +48,8 @@ When the Start Over button  is clicked, the user will start the game from the fi
 
 When the Refuse button  is clicked, none of the door are open  (here we have to explain well the F and T if match the answer the user will score)
 
+When the Show Answer
+
 Data:
 
 Text files hold the input for the Tiger Puzzle game, each file holds the different trials that are going to be display in the text areas
