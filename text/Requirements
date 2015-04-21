@@ -1,0 +1,59 @@
+REQUIREMENTS: “Tiger Puzzle”
+
+Hannah Riggs
+Henrique
+Maria del Mar Moncaleano
+
+
+Description general:
+
+The Tiger Puzzle game shall be developed to provide a graphical interface in which the user (the prisoner) is going to be able to play a game call “Tiger Puzzle”,  The user has to click in one of the doors. Behind of the two door can be either a tiger or a lover.
+
+The goal the Tiger Puzzle is that the User shall be able to find a solution following the directions of the jailer, and taking in account the statements for each door and the jailer.
+
+Functional:
+
+Functional for the Game interface:  When the user runs the “Tiger Puzzle “  game system, it will create a window with an graphical interface:
+
+The data will be read when the game is initialized. It will be loaded into the system.
+
+The Tiger  Puzzle , shall be display as a graphical interface:
+It shall have two Doors images with their text statements under each door in accordance with the actual  trial
+it shall have an Jailer image, the jailer instructions should be display at the top of his image and a statement of the actual trial under it
+If the user don't want to open neither of the doors he will be able to use a REFUSE button, none of the doors will open. False will be their answers and if that is correct user will be score
+It should display a START OVER  button to reset the game
+It should display a NEXT TRIAL button to continue with the trials
+It should have a SHOW ANSWER button that will open both doors and show what if behind of them but just if the user choose one of the door first
+It shall display the instructions of the game in the bottom of the window
+It will display the score of each trial until the user play all of them
+It will display the number of the actual trial that the user is playing
+
+
+The right side of the graphical interface shall have a section for the Jailer, which is a Text Field that prints the instructions that Jailer give to the user, the actual trial at the bottom of the Jailer and the image of the jailer.
+
+The bottom of the graphical interface shall have three buttons to interact for the user with the game:
+NEXT TRIAL button
+START OVER button
+SHOW ANSWER button
+REFUSE button
+
+To win the game, the user shall answer all the trial correctly, never find the tiger
+
+
+Usability:
+
+When the Next Trial button is clicked, the system shall display the number of the actual trial that being display and display the statements for each of the doors and the jailer in their respective text areas
+
+When the Start Over button  is clicked, the user will start the game from the first trial and the score will be 0
+
+When the Refuse button  is clicked, none of the door are open  (here we have to explain well the F and T if match the answer the user will score)
+
+Data:
+
+Text files hold the input for the Tiger Puzzle game, each file holds the different trials that are going to be display in the text areas
+
+Reliability:
+
+
+
+Supportability:
