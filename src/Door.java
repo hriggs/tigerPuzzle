@@ -19,7 +19,7 @@ import javax.imageio.ImageIO;
  */
 public class Door extends JPanel
 {
-    // instance variables
+   
     //Variable for the position of the door and the size
     /*private int x;
     private int y;*/
