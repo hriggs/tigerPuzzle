@@ -1,10 +1,12 @@
 import javax.swing.*;
 import java.util.ArrayList; 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Color;
 
 /**
  * The Display class... To do: description  
@@ -17,6 +19,10 @@ public class Display extends JPanel {
   
   private ArrayList<Trial> trials;
   private int currentIndex; 
+  
+  // components
+  private JPanel southPanel;
+  private JTextArea directions;
 
   /**
    * Constructor for objects of type Trial. 
@@ -25,11 +31,14 @@ public class Display extends JPanel {
     trials = new ArrayList<Trial>(); 
     currentIndex = 0; 
     
+    setComponents(); 
+    
     // read file to create trials
     readFile("file name goes here");
     
-    setComponents();
-    
+    // display 1st trial
+    add(trials.get(currentIndex), BorderLayout.CENTER);
+
     // set size
     // width must be 800 by 600 (width by height) according to frame team
     // will be set by referring to contasts in frame team class
@@ -57,6 +66,9 @@ public class Display extends JPanel {
       // add trial to list
       trials.add(trial);
     }
+    
+    // set directions from file
+    directions.append("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
   }
   
   /**
@@ -67,11 +79,14 @@ public class Display extends JPanel {
     
     createTitle();
     
-    // display 1st trial
-    add(trials.get(currentIndex), BorderLayout.CENTER);
+    // create panel south panel
+    southPanel = new JPanel();
+    southPanel.setLayout(new BorderLayout());
     
-    // create panel of buttons in south
-    JPanel southPanel = new JPanel();
+    // buttons in own panel in south
+    JPanel btnPanel = new JPanel();
+    btnPanel.setLayout(new FlowLayout());
+    
     JButton nextButton = new JButton("Next Trial");
     
     // add event listent to "next trial" button
@@ -93,9 +108,35 @@ public class Display extends JPanel {
         }
       });
     
-    // add button to south panel
-    southPanel.add(nextButton);
+    // create directions
+    createDirections(); 
+    
+    // add button to button panel
+    btnPanel.add(nextButton);
+    
+    // add south panel to main panel
+    southPanel.add(btnPanel, BorderLayout.SOUTH);
     add(southPanel, BorderLayout.SOUTH);
+  }
+  
+  /**
+   * Adds the directions to the puzzle.
+   */
+  private void createDirections() {
+    
+    // add directions label
+    JLabel directTitle = new JLabel("Directions");
+    directTitle.setFont(new Font("Sans-serif", Font.BOLD, 15));
+    southPanel.add(directTitle, BorderLayout.NORTH);
+    
+    // set direction text 
+    directions = new JTextArea("");
+    directions.setEditable(false);
+    directions.setWrapStyleWord(true);
+    directions.setLineWrap(true);
+    
+    // add directions to south panel
+    southPanel.add(directions, BorderLayout.CENTER); 
   }
   
   /**
@@ -104,13 +145,12 @@ public class Display extends JPanel {
   private void createTitle() {
     JPanel northPanel = new JPanel();
     
+    // create title
     JLabel title = new JLabel("The Tiger Puzzle");
     title.setFont(new Font("Sans-serif", Font.BOLD, 30));
     
-    
+    // add to north panel
     northPanel.add(title);
-    
     add(northPanel, BorderLayout.NORTH); 
-    
   }
 }
