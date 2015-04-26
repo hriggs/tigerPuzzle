@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Dimension;
+import java.awt.Font;
 
 /**
  * The Display class... To do: description  
@@ -64,6 +65,8 @@ public class Display extends JPanel {
   public void setComponents() {
     setLayout(new BorderLayout());
     
+    createTitle();
+    
     // display 1st trial
     add(trials.get(currentIndex), BorderLayout.CENTER);
     
@@ -93,5 +96,21 @@ public class Display extends JPanel {
     // add button to south panel
     southPanel.add(nextButton);
     add(southPanel, BorderLayout.SOUTH);
+  }
+  
+  /**
+   * Adds the title to the puzzle.
+   */
+  private void createTitle() {
+    JPanel northPanel = new JPanel();
+    
+    JLabel title = new JLabel("The Tiger Puzzle");
+    title.setFont(new Font("Sans-serif", Font.BOLD, 30));
+    
+    
+    northPanel.add(title);
+    
+    add(northPanel, BorderLayout.NORTH); 
+    
   }
 }
