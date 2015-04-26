@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.border.EmptyBorder;
 
 /**
  * The Display class... To do: description  
@@ -82,7 +83,22 @@ public class Display extends JPanel {
     // create panel south panel
     southPanel = new JPanel();
     southPanel.setLayout(new BorderLayout());
+    southPanel.setBorder(new EmptyBorder(10, 10, 10, 10) );
+
+    // create directions
+    createDirections(); 
     
+    // create buttons
+    createButtons();
+    
+    // add south panel to main panel
+    add(southPanel, BorderLayout.SOUTH);
+  }
+  
+  /**
+   * Creates the buttons. 
+   */
+  private void createButtons() {
     // buttons in own panel in south
     JPanel btnPanel = new JPanel();
     btnPanel.setLayout(new FlowLayout());
@@ -108,15 +124,9 @@ public class Display extends JPanel {
         }
       });
     
-    // create directions
-    createDirections(); 
-    
-    // add button to button panel
+    // add buttons to panels
     btnPanel.add(nextButton);
-    
-    // add south panel to main panel
     southPanel.add(btnPanel, BorderLayout.SOUTH);
-    add(southPanel, BorderLayout.SOUTH);
   }
   
   /**

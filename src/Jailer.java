@@ -37,10 +37,10 @@ public class Jailer extends JPanel{
         
        trialSpeech = "";
        jailerSpeech="";
-       tigerFile="../text/tiger_puzzle.txt";
+       tigerFile="./text/tiger_puzzle.txt";
        readFile(tigerFile);
         try { 
-            img1 = ImageIO.read(new File("../images/master_2.gif"));
+            img1 = ImageIO.read(new File("./images/master_2.gif"));
         }
         catch (Exception e) {
             System.out.println("Image file not found");

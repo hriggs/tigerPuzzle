@@ -62,7 +62,7 @@ public class Door extends JPanel
         try { 
             // gave me errors due to the file path and I wasn't sure how to fix it, so I switched to code below
             //doorImage = new ImageIcon (getClass().getResource("door.jpg"));
-            doorImage = new ImageIcon("../images/door.jpg");
+            doorImage = new ImageIcon("./images/door.jpg");
         }
         catch (Exception e) {
             System.out.println("Door image file not found");

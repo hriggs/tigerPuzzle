@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 
 /**
  * The Trial class is responsible for an individual trial in the puzzle.
@@ -25,6 +26,7 @@ public class Trial extends JPanel
   public Trial(Door d1, Door d2, Jailer j, int trialNum) {
     setLayout(new BorderLayout()); 
     trialLabel = new JLabel("Trial #" + trialNum);
+    trialLabel.setFont(new Font("Sans-serif", Font.BOLD, 15));
     
     doorOne = d1;
     doorTwo = d2;
