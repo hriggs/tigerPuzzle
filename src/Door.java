@@ -19,15 +19,13 @@ import javax.imageio.ImageIO;
  */
 public class Door extends JPanel
 {
-   
-    //Variable for the position of the door and the size
-    /*private int x;
-    private int y;*/
-    //private int  width;
     //variable to hold the statment for the user to read
     private String text;
     // text area where the statements are printing 
     private JTextArea txtArea;
+
+   // private JLabel label1,label2;
+    private JTextArea text1, trialArea;
     //variable to check if the lover is behind of the door
     private boolean hasLover;
     //variable to hold the images;
@@ -38,16 +36,15 @@ public class Door extends JPanel
     private JLabel label;
     private JLabel label1;
     private JLabel label2;
+
+    private JLabel doorLabel;
     
     /**
      * Constructor for objects of class Ball
      */
     public Door(int x, int y, int width, int heigh)
     {
-        /*this.x = x;
-        this.y = y;*/
-       // this.width = width;
-        //this.doorImage = image;
+
     }
     
     /**
@@ -55,13 +52,7 @@ public class Door extends JPanel
      */
     public Door()
     {
-        /*this.x = 50;
-        this.y = 50;*/
-        //this.width = 200;
-        //drawin the image of the door 
-        try { 
-            // gave me errors due to the file path and I wasn't sure how to fix it, so I switched to code below
-            //doorImage = new ImageIcon (getClass().getResource("door.jpg"));
+        try {
             doorImage = new ImageIcon("./images/door.jpg");
         }
         catch (Exception e) {
@@ -72,32 +63,29 @@ public class Door extends JPanel
         label = new JLabel(doorImage);
         //adding the label in the panel
         add(label);
+
+        doorLabel = new JLabel("Door No. ");
+
+        txtArea = new JTextArea(" hola");
+        txtArea.setFont(new Font("Serif", Font.BOLD, 10));
+        txtArea.setEditable(false);
+        txtArea.setForeground(Color.BLACK);
+        txtArea.setBounds(10, 10, 50, 110);
+        txtArea.setWrapStyleWord(true);
+        txtArea.setLineWrap(true);
+        txtArea.setSize(30, 100);
+
+
+        // set Layout and arrange components
+        setLayout(new BorderLayout());
+
+        add(label, BorderLayout.NORTH);
+        add(doorLabel, BorderLayout.CENTER);
+        add(txtArea, BorderLayout.SOUTH);
+        //add(new JTextArea(trialSpeech), BorderLayout.SOUTH);
     }
 
-    /**
-     * returns the x position where the image was draw
-     */
-    /*public int getX()
-    {
-        return x;
-    }*/
-    
-    /**
-     * returns the x position where the image was draw
-     */
-    /*public int getY()
-    {
-        return y;
-    }*/
-    
-    /**
-     * returns the width of the image in the label 
-     */
-    /*public int getWidth()
-    {
-       return width;
-    }*/
-    
+
     /**
      * returns the image of the door
      */
@@ -106,15 +94,7 @@ public class Door extends JPanel
         return doorImage;
     }
     
-    /**
-     * sets the x and y position where the image is being draw
-     */
-    /*public void setPosition(int x, int y)
-    {
-       this.x = x; 
-       this.y = y; 
-    }*/
-    
+
     /**
      * Draws a diferent image when the door is open
      */
@@ -135,21 +115,22 @@ public class Door extends JPanel
     /**
      * to pass the text
      */
-    public void setText()
+    public void setText(String doorText)
     {
+        add(txtArea);
        
     }
     
     /**
      * main method creates a frame to add the panel and paint the label
      */
-    public static void main(String args[]) 
+    /*public static void main(String args[])
     {
         JFrame frame = new JFrame();
         
         //creatring the text Area zone
         JTextArea txtArea = new JTextArea(5,10);
-        txtArea.append(reader());
+        //txtArea.append(reader());
         txtArea.setBackground(Color.blue);
         //txtArea.setFont(new Font("Serif", Font.ITALIC, 20));
         //txtArea.setForeground(new Color(28, 94, 161));
@@ -166,12 +147,12 @@ public class Door extends JPanel
         frame.pack();
         frame.setSize(800,800);
         frame.setVisible(true); 
-    }
+    }*/
     
     /**
      * opens the file for the clues, and read it, returns a tring with the content of the file
      **/
-    public static String reader()
+   /* public static String reader()
     {
         String s = "";
         try {
@@ -197,5 +178,5 @@ public class Door extends JPanel
             e.printStackTrace();
         }
         return s;
-    }
+    }*/
 }
