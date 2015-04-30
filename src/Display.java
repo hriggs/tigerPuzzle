@@ -127,8 +127,32 @@ public class Display extends JPanel {
     // add buttons to panels
     btnPanel.add(nextButton);
     southPanel.add(btnPanel, BorderLayout.SOUTH);
+
+  JButton startOverButton = new JButton("Start Over");
+  // add event listent to "start Over" button
+//  startOverButton.addActionListener(new ActionListener() {
+//    public void actionPerformed(ActionEvent evt) {
+//
+//    }
+//  });
+  // add buttons to panels
+  btnPanel.add(startOverButton);
+  southPanel.add(btnPanel, BorderLayout.SOUTH);
+
+
+  JButton showAnswerButton = new JButton("Show Answer");
+  // add event listent to "show answer" button
+//  showAnswerButton.addActionListener(new ActionListener() {
+//    public void actionPerformed(ActionEvent evt) {
+//
+//    }
+//  });
+//
+  // add buttons to panels
+  btnPanel.add(showAnswerButton);
+  southPanel.add(btnPanel, BorderLayout.SOUTH);
   }
-  
+
   /**
    * Adds the directions to the puzzle.
    */
