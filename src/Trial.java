@@ -3,6 +3,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 
 /**
  * The Trial class is responsible for an individual trial in the puzzle.
@@ -19,6 +21,7 @@ public class Trial extends JPanel
   private JLabel trialLabel; 
   private Door doorOne, doorTwo;
   private Jailer jailer;
+  private Image img1,img2;
   
   /**
    * Constructor for objects of type Trial. 
@@ -42,14 +45,36 @@ public class Trial extends JPanel
   public void addComponents() {
     
     // add items to center panel
-    JPanel centerPanel = new JPanel();
+    //JPanel centerPanel = new JPanel();
+    ImageIcon img = new ImageIcon("./images/prison.png");
+    JPanel centerPanel = new JPanel(){ 
+       
+    protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            img1 = img.getImage();
+            g.drawImage(img1, 0,0, null);
+          
+        };
+    };
+    
     centerPanel.add(doorOne);
     centerPanel.add(doorTwo);
     centerPanel.add(jailer);
+    //centerPanel.setBackground(Color.black);
     add(centerPanel, BorderLayout.CENTER);
     
     // center JLabel in top center
-    JPanel topPanel = new JPanel(new BorderLayout());
+    //JPanel topPanel = new JPanel(new BorderLayout());
+    ImageIcon img3 = new ImageIcon("./images/prison.png");
+    JPanel topPanel = new JPanel(){ 
+       
+    protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            img2 = img3.getImage();
+            g.drawImage(img2, 0,0, null);
+          
+        };
+    };
     topPanel.add(trialLabel, BorderLayout.CENTER);
     
     // add left panel in order to center label
@@ -62,6 +87,7 @@ public class Trial extends JPanel
     // add top panel in north
     add(topPanel, BorderLayout.NORTH);
   }
+  
   
   /**
    * Set text of the jailer.

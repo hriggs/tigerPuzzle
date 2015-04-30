@@ -1,12 +1,17 @@
 import javax.swing.*;
 import java.util.ArrayList; 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -16,14 +21,19 @@ import javax.swing.border.EmptyBorder;
  * @version (2015-04-20)
  */
 
-public class Display extends JPanel {
+public class Display extends JPanel {//change it to extends Game panel later
   
   private ArrayList<Trial> trials;
   private int currentIndex; 
+ 
   
   // components
   private JPanel southPanel;
   private JTextArea directions;
+  private Image img1,img2;
+  
+    
+
 
   /**
    * Constructor for objects of type Trial. 
@@ -39,7 +49,8 @@ public class Display extends JPanel {
     
     // display 1st trial
     add(trials.get(currentIndex), BorderLayout.CENTER);
-
+    //southPanel.setBackground(Color.darkGray);
+   
     // set size
     // width must be 800 by 600 (width by height) according to frame team
     // will be set by referring to contasts in frame team class
@@ -81,7 +92,17 @@ public class Display extends JPanel {
     createTitle();
     
     // create panel south panel
-    southPanel = new JPanel();
+   // southPanel = new JPanel();
+    ImageIcon img = new ImageIcon("./images/prison.png");
+    JPanel southPanel = new JPanel(){ 
+       
+    protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            img1 = img.getImage();
+            g.drawImage(img1, 0,0, null);
+          
+        };
+    };
     southPanel.setLayout(new BorderLayout());
     southPanel.setBorder(new EmptyBorder(10, 10, 10, 10) );
 
@@ -100,7 +121,17 @@ public class Display extends JPanel {
    */
   private void createButtons() {
     // buttons in own panel in south
-    JPanel btnPanel = new JPanel();
+    
+    ImageIcon img = new ImageIcon("./images/prison.png");
+    JPanel btnPanel = new JPanel(){ 
+       
+    protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            img1 = img.getImage();
+            g.drawImage(img1, 0,0, null);
+          
+        };
+    };
     btnPanel.setLayout(new FlowLayout());
     
     JButton nextButton = new JButton("Next Trial");
@@ -126,7 +157,9 @@ public class Display extends JPanel {
     
     // add buttons to panels
     btnPanel.add(nextButton);
-    southPanel.add(btnPanel, BorderLayout.SOUTH);
+  
+  
+    //southPanel.add(btnPanel, BorderLayout.SOUTH);
   }
   
   /**
@@ -137,30 +170,47 @@ public class Display extends JPanel {
     // add directions label
     JLabel directTitle = new JLabel("Directions");
     directTitle.setFont(new Font("Sans-serif", Font.BOLD, 15));
-    southPanel.add(directTitle, BorderLayout.NORTH);
+//    southPanel.add(directTitle, BorderLayout.NORTH);
     
     // set direction text 
     directions = new JTextArea("");
     directions.setEditable(false);
     directions.setWrapStyleWord(true);
     directions.setLineWrap(true);
-    
+  
     // add directions to south panel
-    southPanel.add(directions, BorderLayout.CENTER); 
+    //southPanel.add(directions, BorderLayout.CENTER); 
   }
   
   /**
    * Adds the title to the puzzle.
    */
   private void createTitle() {
-    JPanel northPanel = new JPanel();
+    //JPanel northPanel = new JPanel();
+     ImageIcon img4 = new ImageIcon("./images/prison.png");
+    JPanel northPanel = new JPanel(){ 
+       
+    protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            img2 = img4.getImage();
+            g.drawImage(img2, 0,0, null);
+          
+        };
+    };
+    
+        
     
     // create title
     JLabel title = new JLabel("The Tiger Puzzle");
     title.setFont(new Font("Sans-serif", Font.BOLD, 30));
+   
+    
     
     // add to north panel
     northPanel.add(title);
     add(northPanel, BorderLayout.NORTH); 
+    
+    
   }
+  
 }

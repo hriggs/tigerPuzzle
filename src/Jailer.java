@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -23,6 +24,7 @@ public class Jailer extends JPanel{
     private BufferedImage img1 = null;
     private String tigerFile;
     private int x, y; 
+    private Image img;
     
 /**
  * The Jailer class... To do: Description here
@@ -38,6 +40,7 @@ public class Jailer extends JPanel{
        trialSpeech = "";
        jailerSpeech="";
        tigerFile="./text/tiger_puzzle.txt";
+       setBackground(Color.black);
        readFile(tigerFile);
         try { 
             img1 = ImageIO.read(new File("./images/master_2.gif"));
@@ -62,6 +65,13 @@ public class Jailer extends JPanel{
         add(label1, BorderLayout.CENTER);
         //add(new JTextArea(trialSpeech), BorderLayout.SOUTH);
      }
+     public void paintComponent(Graphics g){
+        
+        super.paintComponent(g);
+        ImageIcon img1 = new ImageIcon("./images/prison.png");
+         img = img1.getImage();
+         g.drawImage(img,0,0,null);
+  }
   
     public void readFile(String fileName)
     {
