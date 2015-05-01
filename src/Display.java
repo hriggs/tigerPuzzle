@@ -207,7 +207,7 @@ public class Display extends JPanel {//change it to extends Game panel later
    */
   private void createTitle() {
     //JPanel northPanel = new JPanel();
-     ImageIcon img4 = new ImageIcon("./images/prison.png");
+     final ImageIcon img4 = new ImageIcon("./images/prison.png");
     JPanel northPanel = new JPanel(){ 
        
     protected void paintComponent(Graphics g) {
