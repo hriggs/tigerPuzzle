@@ -9,10 +9,14 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import javax.imageio.ImageIO;
 import javax.swing.border.EmptyBorder;
+import java.io.IOException;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * The Display class... To do: description  
@@ -38,15 +42,16 @@ public class Display extends JPanel {//change it to extends Game panel later
   /**
    * Constructor for objects of type Trial. 
    */
-  public Display() {
+  public Display() throws LineUnavailableException {
     trials = new ArrayList<Trial>(); 
     currentIndex = 0; 
     
     setComponents(); 
     
+    
     // read file to create trials
     readFile("file name goes here");
-    
+    playSound("song");
     // display 1st trial
     add(trials.get(currentIndex), BorderLayout.CENTER);
     //southPanel.setBackground(Color.darkGray);
@@ -240,5 +245,27 @@ public class Display extends JPanel {//change it to extends Game panel later
     
     
   }
+  //plays a cool tune while from sounds file
+  private void playSound(String soundFile) throws LineUnavailableException{
+    
+    try {
+        AudioInputStream audio = AudioSystem.getAudioInputStream(new File(
+                "./sounds/"+soundFile+".wav"));
+        Clip clip = AudioSystem.getClip();
+        clip.open(audio);
+        clip.start();
+    }
+
+    catch (UnsupportedAudioFileException uae) {
+        System.out.println(uae);
+    } catch (IOException ioe) {
+        System.out.println(ioe);
+    } catch (LineUnavailableException lua) {
+        System.out.println(lua);
+    }
+
+}
+
+
   
 }

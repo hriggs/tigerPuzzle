@@ -1,13 +1,11 @@
 //import java.awt.event.ActionEvent;
 //import java.awt.event.ActionListener;
-import java.io.*;
-import java.util.*; 
-import java.io.FileNotFoundException;
-import java.awt.geom.*;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.Color;
-import javax.imageio.ImageIO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 /**
  * Door Class is part of the implementation of the Tiger Puzzle application
@@ -27,7 +25,7 @@ public class Door extends JPanel
    // private JLabel label1,label2;
     private JTextArea text1, trialArea;
     //variable to check if the lover is behind of the door
-    private boolean hasLover;
+    private boolean hasLover = true;
     //variable to hold the images;
     private ImageIcon doorImage;
     private ImageIcon tigerImage;
@@ -38,6 +36,7 @@ public class Door extends JPanel
     private JLabel label2;
 
     private JLabel doorLabel;
+    private JButton d1,d2;
     
     private Image img;
     
@@ -65,13 +64,22 @@ public class Door extends JPanel
         label = new JLabel(doorImage);
         //adding the label in the panel
         add(label);
+        d1 = new JButton(doorImage);
+        
+        d1.setOpaque(false);
+        d1.setContentAreaFilled(false);
+        d1.setBorderPainted(false);
+        d1.setFocusPainted(false);
 
         doorLabel = new JLabel("Door No. ");
+        doorLabel.setBackground(Color.black);
+        doorLabel.setForeground(Color.getHSBColor(50, 54, 54));
 
         txtArea = new JTextArea(" hola");
         txtArea.setFont(new Font("Serif", Font.BOLD, 10));
         txtArea.setEditable(false);
-        txtArea.setForeground(Color.BLACK);
+        txtArea.setBackground(Color.black);
+        txtArea.setForeground(Color.getHSBColor(50, 54, 54));
         txtArea.setBounds(10, 10, 50, 110);
         txtArea.setWrapStyleWord(true);
         txtArea.setLineWrap(true);
@@ -81,7 +89,9 @@ public class Door extends JPanel
         // set Layout and arrange components
         setLayout(new BorderLayout());
 
-        add(label, BorderLayout.NORTH);
+        //add(label, BorderLayout.NORTH);
+        add(d1,BorderLayout.NORTH);
+        d1.addActionListener(new doorButton());
         add(doorLabel, BorderLayout.CENTER);
         add(txtArea, BorderLayout.SOUTH);
         setBackground(Color.black);
@@ -91,8 +101,8 @@ public class Door extends JPanel
         
         super.paintComponent(g);
         ImageIcon img1 = new ImageIcon("./images/prison.png");
-         img = img1.getImage();
-         g.drawImage(img,0,0,null);
+        img = img1.getImage();
+        g.drawImage(img,0,0,null);
   }
 
     /**
@@ -107,18 +117,27 @@ public class Door extends JPanel
     /**
      * Draws a diferent image when the door is open
      */
-    public void openDoor()
-    {
+    private class doorButton implements ActionListener{ 
+     public void actionPerformed(ActionEvent evt) {
+        boolean hasLover = true;
         if(hasLover == true)
         {
-        loverImage = new ImageIcon (getClass().getResource("loverImage.gif"));
-        label1 = new JLabel(loverImage);    
+        loverImage = new ImageIcon ("./images/loverImage.png");
+        label = new JLabel(loverImage); 
+        d1= new JButton(loverImage);
+        revalidate();
+                repaint();
         }
         else 
         {
-        tigerImage = new ImageIcon (getClass().getResource("tigerImage.gif"));
-        label2 = new JLabel(tigerImage);       
+        tigerImage = new ImageIcon ("./images/loverImage.png");
+        label2 = new JLabel(tigerImage);
+        add(label2,BorderLayout.NORTH);
+        revalidate();
+        repaint();
         }
+     
+}
     }
     
     /**

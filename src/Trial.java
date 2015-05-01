@@ -51,7 +51,7 @@ public class Trial extends JPanel
        
    protected void paintComponent(Graphics g) {
            super.paintComponent(g);
-          img1 = img.getImage();
+           img1 = img.getImage();
            g.drawImage(img1, 0,0, null);
           
        };
@@ -78,7 +78,15 @@ public class Trial extends JPanel
     topPanel.add(trialLabel, BorderLayout.CENTER);
     
     // add left panel in order to center label
-    JPanel lPanel = new JPanel();
+    JPanel lPanel = new JPanel(){
+     protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            img2 = img3.getImage();
+            g.drawImage(img2, 0,0, null);
+          
+        };
+    };
+    
     // change 800 to constant
     int westSize = (int) ((800 - trialLabel.getPreferredSize().width)/2); 
     lPanel.setPreferredSize(new Dimension(westSize, 5));
