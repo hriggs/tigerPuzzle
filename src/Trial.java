@@ -79,6 +79,7 @@ public class Trial extends JPanel
     
     // add left panel in order to center label
     JPanel lPanel = new JPanel();
+    
     // change 800 to constant
     int westSize = (int) ((800 - trialLabel.getPreferredSize().width)/2); 
     lPanel.setPreferredSize(new Dimension(westSize, 5));

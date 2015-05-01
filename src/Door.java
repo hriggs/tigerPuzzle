@@ -5,6 +5,9 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.LineUnavailableException;
 
 
 /**
@@ -25,7 +28,7 @@ public class Door extends JPanel
    // private JLabel label1,label2;
     private JTextArea text1, trialArea;
     //variable to check if the lover is behind of the door
-    private boolean hasLover = true;
+    private boolean hasLover;
     //variable to hold the images;
     private ImageIcon doorImage;
     private ImageIcon tigerImage;
@@ -37,9 +40,10 @@ public class Door extends JPanel
 
     private JLabel doorLabel;
     private JButton d1,d2;
-    
+     
     private Image img;
     
+    private Sound sound;
     /**
      * Constructor for objects of class Ball
      */
@@ -78,6 +82,7 @@ public class Door extends JPanel
         txtArea = new JTextArea(" hola");
         txtArea.setFont(new Font("Serif", Font.BOLD, 10));
         txtArea.setEditable(false);
+        txtArea.setOpaque(false);
         txtArea.setBackground(Color.black);
         txtArea.setForeground(Color.getHSBColor(50, 54, 54));
         txtArea.setBounds(10, 10, 50, 110);
@@ -86,24 +91,20 @@ public class Door extends JPanel
         txtArea.setSize(30, 100);
 
 
-        // set Layout and arrange components
-        setLayout(new BorderLayout());
-
+        // set Layout and arrange components and transparency of panel
+         setLayout(new BorderLayout());
+         setOpaque(false);
         //add(label, BorderLayout.NORTH);
         add(d1,BorderLayout.NORTH);
         d1.addActionListener(new doorButton());
+        
         add(doorLabel, BorderLayout.CENTER);
         add(txtArea, BorderLayout.SOUTH);
         setBackground(Color.black);
         
-    }
-  // public void paintComponent(Graphics g){
         
-      //  super.paintComponent(g);
-      //  ImageIcon img1 = new ImageIcon("./images/prison.png");
-      //  img = img1.getImage();
-      //  g.drawImage(img,0,0,null);
- // }
+        
+    }
 
     /**
      * returns the image of the door
@@ -120,21 +121,42 @@ public class Door extends JPanel
     
     ///Henrique is still working on this. I can always go back to the opendoor method.
     private class doorButton implements ActionListener{ 
+       Sound sound = new Sound();
+       boolean hasLover = false;
+       Thread t = new Thread();
+       
      public void actionPerformed(ActionEvent evt) {
-        boolean hasLover = true;
-        if(hasLover == true)
+        if(hasLover == false)
         {
-        loverImage = new ImageIcon ("./images/loverImage.png");
-        label = new JLabel(loverImage); 
-        d1= new JButton(loverImage);
+       
+        loverImage = new ImageIcon ("./images/loverImage.gif");
+        label2 = new JLabel(loverImage);
+        add(label2,BorderLayout.NORTH);
+        d1.setVisible(false);
+            try {
+               
+                sound.playSound("love");
+            } catch (LineUnavailableException ex) {
+                Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
+            }
         revalidate();
         repaint();
         }
         else 
         {
-        tigerImage = new ImageIcon ("./images/loverImage.png");
+        tigerImage = new ImageIcon ("./images/tigerImage.gif");
         label2 = new JLabel(tigerImage);
         add(label2,BorderLayout.NORTH);
+         d1.setVisible(false);
+        
+        
+         try {
+               
+                sound.playSound("tiger");
+            } catch (LineUnavailableException ex) {
+                Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
         revalidate();
         repaint();
         }

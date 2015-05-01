@@ -36,14 +36,17 @@ public class Display extends JPanel {//change it to extends Game panel later
   private JTextArea directions;
   private Image img1,img2;
   
+  private Sound sound;
+  
     
 
 
   /**
    * Constructor for objects of type Trial. 
+     * @throws javax.sound.sampled.LineUnavailableException
    */
   public Display() throws LineUnavailableException {
-    trials = new ArrayList<Trial>(); 
+    trials = new ArrayList<>(); 
     currentIndex = 0; 
     
     setComponents(); 
@@ -51,7 +54,8 @@ public class Display extends JPanel {//change it to extends Game panel later
     
     // read file to create trials
     readFile("file name goes here");
-    playSound("song");
+    sound = new Sound();
+    sound.playSound("cave");
     // display 1st trial
     add(trials.get(currentIndex), BorderLayout.CENTER);
     //southPanel.setBackground(Color.darkGray);
@@ -100,12 +104,12 @@ public class Display extends JPanel {//change it to extends Game panel later
     createTitle();
     
     // create panel south panel
-    southPanel = new JPanel();
-   
-    southPanel.setLayout(new BorderLayout());
-    southPanel.setBorder(new EmptyBorder(10, 10, 10, 10) );
-    southPanel.setOpaque(false);
-    
+   // southPanel = new JPanel();
+    ImageIcon img = new ImageIcon("./images/prison.png");
+     southPanel = new JPanel();
+     southPanel.setBackground(Color.black);
+     southPanel.setLayout(new BorderLayout());
+     southPanel.setBorder(new EmptyBorder(10, 10, 10, 10) );
 
     // create directions
     createDirections(); 
@@ -124,10 +128,15 @@ public class Display extends JPanel {//change it to extends Game panel later
     // buttons in own panel in south
     
     ImageIcon img = new ImageIcon("./images/prison.png");
-    JPanel btnPanel = new JPanel();
-    btnPanel.setOpaque(false);
+    JPanel btnPanel = new JPanel(){
        
-   
+    protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            img1 = img.getImage();
+           g.drawImage(img1, 0,0, null);
+          
+        };
+    };
     btnPanel.setLayout(new FlowLayout()); 
     JButton nextButton = new JButton("Next Trial");
     
@@ -233,27 +242,8 @@ public class Display extends JPanel {//change it to extends Game panel later
     
     
   }
-  //plays a cool tune while from sounds file
-  private void playSound(String soundFile) throws LineUnavailableException{
-    
-    try {
-        AudioInputStream audio = AudioSystem.getAudioInputStream(new File(
-                "./sounds/"+soundFile+".wav"));
-        Clip clip = AudioSystem.getClip();
-        clip.open(audio);
-        clip.start();
-    }
 
-    catch (UnsupportedAudioFileException uae) {
-        System.out.println(uae);
-    } catch (IOException ioe) {
-        System.out.println(ioe);
-    } catch (LineUnavailableException lua) {
-        System.out.println(lua);
-    }
-
-}
-
+  
 
   
 }
