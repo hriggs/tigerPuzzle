@@ -69,15 +69,16 @@ public class Jailer extends JPanel{
         setLayout(new BorderLayout());
         add(text1, BorderLayout.NORTH);
         add(label1, BorderLayout.CENTER);
+        setOpaque(false);
         //add(new JTextArea(trialSpeech), BorderLayout.SOUTH);
      }
-     public void paintComponent(Graphics g){
+  //   public void paintComponent(Graphics g){
         
-        super.paintComponent(g);
-        ImageIcon img1 = new ImageIcon("./images/prison.png");
-         img = img1.getImage();
-         g.drawImage(img,0,0,null);
-  }
+     //   super.paintComponent(g);
+     //   ImageIcon img1 = new ImageIcon("./images/prison.png");
+     //    img = img1.getImage();
+     //    g.drawImage(img,0,0,null);
+  //}
   
     public void readFile(String fileName)
     {

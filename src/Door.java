@@ -97,13 +97,13 @@ public class Door extends JPanel
         setBackground(Color.black);
         
     }
-   public void paintComponent(Graphics g){
+  // public void paintComponent(Graphics g){
         
-        super.paintComponent(g);
-        ImageIcon img1 = new ImageIcon("./images/prison.png");
-        img = img1.getImage();
-        g.drawImage(img,0,0,null);
-  }
+      //  super.paintComponent(g);
+      //  ImageIcon img1 = new ImageIcon("./images/prison.png");
+      //  img = img1.getImage();
+      //  g.drawImage(img,0,0,null);
+ // }
 
     /**
      * returns the image of the door

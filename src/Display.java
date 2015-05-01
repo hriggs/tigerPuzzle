@@ -100,19 +100,12 @@ public class Display extends JPanel {//change it to extends Game panel later
     createTitle();
     
     // create panel south panel
-   // southPanel = new JPanel();
-    ImageIcon img = new ImageIcon("./images/prison.png");
-     southPanel = new JPanel(){ 
-       
-    protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            img1 = img.getImage();
-            g.drawImage(img1, 0,0, null);
-          
-        };
-    };
+    southPanel = new JPanel();
+   
     southPanel.setLayout(new BorderLayout());
     southPanel.setBorder(new EmptyBorder(10, 10, 10, 10) );
+    southPanel.setOpaque(false);
+    
 
     // create directions
     createDirections(); 
@@ -131,15 +124,10 @@ public class Display extends JPanel {//change it to extends Game panel later
     // buttons in own panel in south
     
     ImageIcon img = new ImageIcon("./images/prison.png");
-    JPanel btnPanel = new JPanel(){
+    JPanel btnPanel = new JPanel();
+    btnPanel.setOpaque(false);
        
-    protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            img1 = img.getImage();
-           g.drawImage(img1, 0,0, null);
-          
-        };
-    };
+   
     btnPanel.setLayout(new FlowLayout()); 
     JButton nextButton = new JButton("Next Trial");
     
