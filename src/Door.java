@@ -115,8 +115,10 @@ public class Door extends JPanel
     
 
     /**
-     * Draws a diferent image when the door is open
+     * Draws a different image when the door is open
      */
+    
+    ///Henrique is still working on this. I can always go back to the opendoor method.
     private class doorButton implements ActionListener{ 
      public void actionPerformed(ActionEvent evt) {
         boolean hasLover = true;
@@ -126,7 +128,7 @@ public class Door extends JPanel
         label = new JLabel(loverImage); 
         d1= new JButton(loverImage);
         revalidate();
-                repaint();
+        repaint();
         }
         else 
         {
