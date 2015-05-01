@@ -55,7 +55,7 @@ public class Door extends JPanel
     public Door()
     {
         try {
-            doorImage = new ImageIcon("./images/door.jpg");
+            doorImage = new ImageIcon("./images/door.gif");
         }
         catch (Exception e) {
             System.out.println("Door image file not found");
@@ -85,7 +85,7 @@ public class Door extends JPanel
         add(doorLabel, BorderLayout.CENTER);
         add(txtArea, BorderLayout.SOUTH);
         setBackground(Color.black);
-        //add(new JTextArea(trialSpeech), BorderLayout.SOUTH);
+        
     }
    public void paintComponent(Graphics g){
         
@@ -111,12 +111,12 @@ public class Door extends JPanel
     {
         if(hasLover == true)
         {
-        loverImage = new ImageIcon (getClass().getResource("loverImage.png"));
+        loverImage = new ImageIcon (getClass().getResource("loverImage.gif"));
         label1 = new JLabel(loverImage);    
         }
         else 
         {
-        tigerImage = new ImageIcon (getClass().getResource("tigerImage.png"));
+        tigerImage = new ImageIcon (getClass().getResource("tigerImage.gif"));
         label2 = new JLabel(tigerImage);       
         }
     }

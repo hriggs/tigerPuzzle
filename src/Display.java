@@ -73,6 +73,7 @@ public class Display extends JPanel {//change it to extends Game panel later
       Trial trial = new Trial(new Door(), new Door(), new Jailer(), i);
       
       // set text
+     
       trial.setJailerText("Jailer's text goes here. Trial number: " + i);
       
       // add trial to list
@@ -80,6 +81,8 @@ public class Display extends JPanel {//change it to extends Game panel later
     }
     
     // set directions from file
+    directions.setBackground(Color.black);
+    directions.setForeground(Color.getHSBColor(50, 54, 54));
     directions.append("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
   }
   
@@ -94,7 +97,7 @@ public class Display extends JPanel {//change it to extends Game panel later
     // create panel south panel
    // southPanel = new JPanel();
     ImageIcon img = new ImageIcon("./images/prison.png");
-    JPanel southPanel = new JPanel(){ 
+     southPanel = new JPanel(){ 
        
     protected void paintComponent(Graphics g) {
             super.paintComponent(g);
@@ -123,17 +126,16 @@ public class Display extends JPanel {//change it to extends Game panel later
     // buttons in own panel in south
     
     ImageIcon img = new ImageIcon("./images/prison.png");
-    JPanel btnPanel = new JPanel(){ 
+    JPanel btnPanel = new JPanel(){
        
     protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             img1 = img.getImage();
-            g.drawImage(img1, 0,0, null);
+           g.drawImage(img1, 0,0, null);
           
         };
     };
-    btnPanel.setLayout(new FlowLayout());
-    
+    btnPanel.setLayout(new FlowLayout()); 
     JButton nextButton = new JButton("Next Trial");
     
     // add event listent to "next trial" button
@@ -159,7 +161,7 @@ public class Display extends JPanel {//change it to extends Game panel later
     btnPanel.add(nextButton);
   
   
-    //southPanel.add(btnPanel, BorderLayout.SOUTH);
+    southPanel.add(btnPanel, BorderLayout.SOUTH);
   }
   
   /**
@@ -170,7 +172,8 @@ public class Display extends JPanel {//change it to extends Game panel later
     // add directions label
     JLabel directTitle = new JLabel("Directions");
     directTitle.setFont(new Font("Sans-serif", Font.BOLD, 15));
-//    southPanel.add(directTitle, BorderLayout.NORTH);
+    directTitle.setForeground(Color.getHSBColor(50, 54, 54));
+    southPanel.add(directTitle, BorderLayout.NORTH);
     
     // set direction text 
     directions = new JTextArea("");
@@ -179,7 +182,7 @@ public class Display extends JPanel {//change it to extends Game panel later
     directions.setLineWrap(true);
   
     // add directions to south panel
-    //southPanel.add(directions, BorderLayout.CENTER); 
+   southPanel.add(directions, BorderLayout.CENTER); 
   }
   
   /**
@@ -203,6 +206,7 @@ public class Display extends JPanel {//change it to extends Game panel later
     // create title
     JLabel title = new JLabel("The Tiger Puzzle");
     title.setFont(new Font("Sans-serif", Font.BOLD, 30));
+    title.setForeground(Color.getHSBColor(50, 54, 54));
    
     
     

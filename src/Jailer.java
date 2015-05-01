@@ -50,10 +50,16 @@ public class Jailer extends JPanel{
         }
         label1 = new JLabel(new ImageIcon(img1));
         
-        text1= new JTextArea(jailerSpeech);
+        text1= new JTextArea();
+        
         text1.setFont(new Font("Serif", Font.BOLD, 10));
+         text1.setForeground(Color.getHSBColor(50, 54, 54));
+        text1.setBackground(Color.black);
+        text1.append(jailerSpeech);
+       
+        
         text1.setEditable(false);
-        text1.setForeground(Color.BLACK);
+        //text1.setForeground(Color.BLACK);
         text1.setBounds(10, 10, 50, 110);
         text1.setWrapStyleWord(true);
         text1.setLineWrap(true);
@@ -123,7 +129,11 @@ public class Jailer extends JPanel{
      * @param  speech  the trial speech text
      */
     public void setTrialText(String speech) {
-      add(new JTextArea(speech), BorderLayout.SOUTH);
+        JTextArea speechBox = new JTextArea( BorderLayout.SOUTH);
+        speechBox.setBackground(Color.black);
+        speechBox.setForeground(Color.getHSBColor(50, 54, 54));
+        speechBox.append(speech); 
+      //add(new JTextArea(speech), BorderLayout.SOUTH);
     }
   
 }

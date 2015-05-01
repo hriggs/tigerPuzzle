@@ -45,17 +45,17 @@ public class Trial extends JPanel
   public void addComponents() {
     
     // add items to center panel
-    //JPanel centerPanel = new JPanel();
+   // JPanel centerPanel = new JPanel();
     ImageIcon img = new ImageIcon("./images/prison.png");
-    JPanel centerPanel = new JPanel(){ 
+   JPanel centerPanel = new JPanel(){ 
        
-    protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            img1 = img.getImage();
-            g.drawImage(img1, 0,0, null);
+   protected void paintComponent(Graphics g) {
+           super.paintComponent(g);
+          img1 = img.getImage();
+           g.drawImage(img1, 0,0, null);
           
-        };
-    };
+       };
+   };
     
     centerPanel.add(doorOne);
     centerPanel.add(doorTwo);
