@@ -59,7 +59,7 @@ public class Jailer extends JPanel{
        
         
         text1.setEditable(false);
-        //text1.setForeground(Color.BLACK);
+       
         text1.setBounds(10, 10, 50, 110);
         text1.setWrapStyleWord(true);
         text1.setLineWrap(true);
@@ -72,13 +72,7 @@ public class Jailer extends JPanel{
         setOpaque(false);
         //add(new JTextArea(trialSpeech), BorderLayout.SOUTH);
      }
-  //   public void paintComponent(Graphics g){
-        
-     //   super.paintComponent(g);
-     //   ImageIcon img1 = new ImageIcon("./images/prison.png");
-     //    img = img1.getImage();
-     //    g.drawImage(img,0,0,null);
-  //}
+
   
     public void readFile(String fileName)
     {

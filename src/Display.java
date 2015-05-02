@@ -50,15 +50,15 @@ public class Display extends JPanel {//change it to extends Game panel later
     currentIndex = 0; 
     
     setComponents(); 
-    
-    
+
     // read file to create trials
     readFile("file name goes here");
+    //plays sound effects
     sound = new Sound();
     sound.playSound("cave");
     // display 1st trial
     add(trials.get(currentIndex), BorderLayout.CENTER);
-    //southPanel.setBackground(Color.darkGray);
+  
    
     // set size
     // width must be 800 by 600 (width by height) according to frame team
@@ -77,9 +77,26 @@ public class Display extends JPanel {//change it to extends Game panel later
     // imagining 4 trials in this case
     
     for (int i = 1; i < 5; i++) {
-      
+      boolean a = true;
+      boolean b = false;
+      if(i==1){
+          a=true;
+          b=false;
+      }
+      else if(i==2){
+          a=true;
+          b=true; 
+      }
+      else if(i==3){
+          a=true;
+          b=false; 
+      }
+      else if(i==4){
+          a=false;
+          b=true; 
+      }
       // create trial
-      Trial trial = new Trial(new Door(), new Door(), new Jailer(), i);
+      Trial trial = new Trial(new Door(a), new Door(b), new Jailer(), i);
       
       // set text
      
@@ -104,7 +121,7 @@ public class Display extends JPanel {//change it to extends Game panel later
     createTitle();
     
     // create panel south panel
-   // southPanel = new JPanel();
+   
     ImageIcon img = new ImageIcon("./images/prison.png");
      southPanel = new JPanel();
      southPanel.setBackground(Color.black);
@@ -130,13 +147,12 @@ public class Display extends JPanel {//change it to extends Game panel later
     ImageIcon img = new ImageIcon("./images/prison.png");
     JPanel btnPanel = new JPanel(){
        
-    protected void paintComponent(Graphics g) {
+            protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             img1 = img.getImage();
-           g.drawImage(img1, 0,0, null);
-          
+            g.drawImage(img1, 0,0, null); 
+           };
         };
-    };
     btnPanel.setLayout(new FlowLayout()); 
     JButton nextButton = new JButton("Next Trial");
     

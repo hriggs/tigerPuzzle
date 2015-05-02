@@ -45,7 +45,7 @@ public class Door extends JPanel
     
     private Sound sound;
     /**
-     * Constructor for objects of class Ball
+     * Constructor for objects of class 
      */
     public Door(int x, int y, int width, int heigh)
     {
@@ -53,9 +53,9 @@ public class Door extends JPanel
     }
     
     /**
-     * Constructor for objects of class Ball
+     * Constructor for objects of class 
      */
-    public Door()
+    public Door(boolean b)
     {
         try {
             doorImage = new ImageIcon("./images/door.gif");
@@ -102,8 +102,8 @@ public class Door extends JPanel
         add(txtArea, BorderLayout.SOUTH);
         setBackground(Color.black);
         
-        
-        
+       hasLover=b;
+       System.out.print(b);
     }
 
     /**
@@ -116,15 +116,12 @@ public class Door extends JPanel
     
 
     /**
-     * Draws a different image when the door is open
+     * Draws a different image when the door is open. It is done by making the door as buttons.
      */
-    
-    ///Henrique is still working on this. I can always go back to the opendoor method.
     private class doorButton implements ActionListener{ 
-       Sound sound = new Sound();
-       boolean hasLover = false;
-       Thread t = new Thread();
        
+       Sound sound = new Sound();
+
      public void actionPerformed(ActionEvent evt) {
         if(hasLover == false)
         {
@@ -133,6 +130,7 @@ public class Door extends JPanel
         label2 = new JLabel(loverImage);
         add(label2,BorderLayout.NORTH);
         d1.setVisible(false);
+        //calls the sound method in Sound Class
             try {
                
                 sound.playSound("love");
@@ -148,8 +146,6 @@ public class Door extends JPanel
         label2 = new JLabel(tigerImage);
         add(label2,BorderLayout.NORTH);
          d1.setVisible(false);
-        
-        
          try {
                
                 sound.playSound("tiger");
@@ -172,6 +168,7 @@ public class Door extends JPanel
         add(txtArea);
        
     }
+   
     
     /**
      * main method creates a frame to add the panel and paint the label

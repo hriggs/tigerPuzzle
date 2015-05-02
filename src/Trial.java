@@ -60,11 +60,9 @@ public class Trial extends JPanel
     centerPanel.add(doorOne);
     centerPanel.add(doorTwo);
     centerPanel.add(jailer);
-    //centerPanel.setBackground(Color.black);
+    
     add(centerPanel, BorderLayout.CENTER);
     
-    // center JLabel in top center
-    //JPanel topPanel = new JPanel(new BorderLayout());
     final ImageIcon img3 = new ImageIcon("./images/prison.png");
     JPanel topPanel = new JPanel(){ 
        
