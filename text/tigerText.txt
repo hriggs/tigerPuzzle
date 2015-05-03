@@ -1,9 +1,9 @@
 DSTART
-Directions at bottom go here
+Based on the statements below each door and the statements of the jailer (who may or may not be lying), you must choose the door(s) you believe has a lover behind it. Find a lover every turn and you can ecape the dungeon! Click on a door to open it or click on the "I refuse" button to choose neither. 
 DEND
 
 JSTART
-Jailer start speech goes here.
+Behind each door I have placed either a hungry tiger or one of your true loves. Tigers or true loves could also be behind both doors. On each door is a sign that is either true or false. The only concesson I have made is that the signs on the doors are consistent with what is behind the doors! During every trial you may pick one, both or neither doors! 
 JEND
 
 TSTART

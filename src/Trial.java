@@ -28,7 +28,7 @@ public class Trial extends JPanel
    */
   public Trial(Door d1, Door d2, Jailer j, int trialNum) {
     setLayout(new BorderLayout()); 
-    trialLabel = new JLabel("Trial #" + trialNum);
+    trialLabel = new JLabel("Trial No. " + trialNum);
     trialLabel.setFont(new Font("Sans-serif", Font.BOLD, 15));
     
     doorOne = d1;
@@ -89,7 +89,6 @@ public class Trial extends JPanel
     add(topPanel, BorderLayout.NORTH);
   }
   
-  
   /**
    * Set text of the jailer.
    * 
@@ -132,6 +131,17 @@ public class Trial extends JPanel
     {
       doorTwo.setHasLover(hasLover);
     }
-    
+  }
+  
+ /**
+   * 
+   */
+  public void setDoorNum(String num, int doorNum) {
+    if (doorNum == 1) {
+      doorOne.setDoorNum(num);
+    } else
+    {
+      doorTwo.setDoorNum(num);
+    }
   }
 }

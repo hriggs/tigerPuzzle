@@ -13,26 +13,30 @@ import javax.sound.sampled.LineUnavailableException;
 /**
  * Door Class is part of the implementation of the Tiger Puzzle application
  * creates a label with a image call door, each object door will be able to draw it self
- * it will be display a text for the user instructions, which is read from a file
+ * it will be display text related to that door. 
  * 
  * @author (Maria, Henrique, Hannah) 
  * @version (2015-04-16)
  */
 public class Door extends JPanel
 {
-    //variable to hold the statment for the user to read
+    // the statment for the user to read
     private String text;
+    
     // text area where the statements are printing 
     private JTextArea txtArea;
 
-   // private JLabel label1,label2;
+    // private JLabel label1,label2;
     private JTextArea text1, trialArea;
-    //variable to check if the lover is behind of the door
+    
+    // if the lover is behind of the door
     private boolean hasLover;
+    
     //variable to hold the images;
     private ImageIcon doorImage;
     private ImageIcon tigerImage;
     private ImageIcon loverImage;
+    
     //label for each of the images
     private JLabel label;
     private JLabel label1;
@@ -40,10 +44,12 @@ public class Door extends JPanel
 
     private JLabel doorLabel;
     private JButton d1,d2;
-     
     private Image img;
-    
     private Sound sound;
+    
+    // door number label string
+    private String labelText;
+    
     
     /**
      * Constructor for objects of class 
@@ -56,11 +62,6 @@ public class Door extends JPanel
         catch (Exception e) {
             System.out.println("Door image file not found");
         }
-        
-        //putting the image in a label
-        label = new JLabel(doorImage);
-        //adding the label in the panel
-        add(label);
         d1 = new JButton(doorImage);
         
         d1.setOpaque(false);
@@ -68,12 +69,12 @@ public class Door extends JPanel
         d1.setBorderPainted(false);
         d1.setFocusPainted(false);
 
-        doorLabel = new JLabel("Door No. ");
+        doorLabel = new JLabel("");
         doorLabel.setBackground(Color.black);
         doorLabel.setForeground(Color.getHSBColor(50, 54, 54));
 
         txtArea = new JTextArea();
-        txtArea.setFont(new Font("Serif", Font.BOLD, 10));
+        txtArea.setFont(new Font("Sans-Serif", Font.BOLD, 10));
         txtArea.setEditable(false);
         txtArea.setOpaque(false);
         txtArea.setBackground(Color.black);
@@ -82,35 +83,33 @@ public class Door extends JPanel
         txtArea.setWrapStyleWord(true);
         txtArea.setLineWrap(true);
         txtArea.setSize(30, 100);
-
+        
+        // add bottom panel
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setOpaque(false);
+        bottomPanel.add(doorLabel);
+        bottomPanel.add(txtArea);
+        
 
         // set Layout and arrange components and transparency of panel
-         setLayout(new BorderLayout());
-         setOpaque(false);
-        //add(label, BorderLayout.NORTH);
+        setLayout(new BorderLayout());
+        setOpaque(false);
+        
+        //add(topPanel, BorderLayout.NORTH);
         add(d1,BorderLayout.NORTH);
         d1.addActionListener(new doorButton());
         
-        add(doorLabel, BorderLayout.CENTER);
-        add(txtArea, BorderLayout.SOUTH);
+        //add(doorLabel, BorderLayout.CENTER);
+        add(bottomPanel, BorderLayout.SOUTH);
         setBackground(Color.black);
     }
-
-    /**
-     * returns the image of the door
-     */
-    public ImageIcon getImage()
-    {
-        return doorImage;
-    }
-    
 
     /**
      * Draws a different image when the door is open. It is done by making the door as buttons.
      */
     private class doorButton implements ActionListener{ 
        
-       Sound sound = new Sound();
+      Sound sound = new Sound();
 
      public void actionPerformed(ActionEvent evt) {
         if(hasLover == true) {
@@ -157,5 +156,12 @@ public class Door extends JPanel
     public void setHasLover(boolean hasLover) 
     {
         this.hasLover = hasLover; 
+    }
+    
+    /**
+     * 
+     */
+    public void setDoorNum(String num) {
+      doorLabel.setText("Door No. " + num);
     }
 }
