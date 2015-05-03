@@ -65,9 +65,9 @@ public class Trial extends JPanel
     add(centerPanel, BorderLayout.CENTER);
     
     final ImageIcon img3 = new ImageIcon("../images/prison.png");
-    JPanel topPanel = new JPanel(){ 
+    JPanel topPanel = new JPanel(new BorderLayout()){ 
        
-    protected void paintComponent(Graphics g) {
+   protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             img2 = img3.getImage();
             g.drawImage(img2, 0,0, null);
@@ -152,5 +152,19 @@ public class Trial extends JPanel
   public void showBehindDoors() {
     doorOne.showBehindDoor();
     doorTwo.showBehindDoor(); 
+  }
+  
+  /**
+   * 
+   */
+  public boolean bothHaveTigers() {
+    if (doorOne.hasLover() || doorTwo.hasLover()) {
+      System.out.println("has lovers");
+      return false; 
+    } else
+    {
+      System.out.println("has 2 tigers");
+    return true; 
+    }
   }
 }

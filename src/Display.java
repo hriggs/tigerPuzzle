@@ -35,12 +35,15 @@ public class Display extends JPanel {//change it to extends Game panel later
   private ArrayList<Trial> trials;
   private int currentIndex; 
   private int trialNum;
+  private int numCorrect;
  
   // components
   private JPanel southPanel, centerPanel;
   private JTextArea directions;
   private Image img1,img2;
   private JPanel centerLower; 
+  private JLabel resultsText;
+  private JLabel scoreLabel;
   
   private Sound sound;
 
@@ -52,6 +55,7 @@ public class Display extends JPanel {//change it to extends Game panel later
     trials = new ArrayList<Trial>(); 
     currentIndex = 0; 
     trialNum = 0; 
+    numCorrect = 0;
     
     setComponents(); 
 
@@ -204,10 +208,23 @@ public class Display extends JPanel {//change it to extends Game panel later
     centerPanel.add(trials.get(currentIndex), BorderLayout.CENTER);
     
     // create components for bottom half of center panel
-    JButton refuseButton = new JButton("I refuse to Choose!");
-    JLabel resultsText = new JLabel("Will you choose right?");
-    JLabel scoreLabel = new JLabel("Correct: 0/7");
-    
+    resultsText = new JLabel("Will you choose right?");
+    scoreLabel = new JLabel("Correct: 0/" + trialNum);
+    JButton refuseButton = new JButton("I choose Neither!");
+    refuseButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent evt) {
+          System.out.println("both tigers button chosen");
+          
+          if (trials.get(currentIndex).bothHaveTigers()) {
+            resultsText.setText("Yes-- both doors have tigers!");
+            numCorrect++; 
+            scoreLabel.setText("Correct: " + numCorrect + "/" + trialNum);
+          } else {
+            resultsText.setText("No-- a lover is behind a door!");
+          }
+        }
+      });
+      
     centerLower = new JPanel();
     centerLower.setOpaque(false);
     centerLower.add(refuseButton);
@@ -246,14 +263,10 @@ public class Display extends JPanel {//change it to extends Game panel later
           {
             // increment current index
             currentIndex++;
+            
+            resultsText.setText("Will you choose right?");
 
-            // display next trial
-            /*remove(trials.get(currentIndex - 1));
-            add(trials.get(currentIndex));
-            centerPanel.add(trials.get(currentIndex), BorderLayout.CENTER);
-            revalidate();
-            repaint();
-            System.out.println("next trial: " + currentIndex);*/
+            // reset panel
             remove(centerPanel);
             centerPanel.add(trials.get(currentIndex - 1), BorderLayout.CENTER);
             add(centerPanel, BorderLayout.CENTER);
@@ -272,13 +285,6 @@ public class Display extends JPanel {//change it to extends Game panel later
   startOverButton.addActionListener(new ActionListener() {
     public void actionPerformed(ActionEvent evt) {
       // display first trial
-      /*System.out.println("before resetting: " + currentIndex);
-      remove(trials.get(currentIndex));
-      add(trials.get(0));
-      revalidate();
-      repaint();
-      currentIndex = 0;
-      System.out.println(currentIndex);*/
       remove(centerPanel);
       currentIndex = 0;
       centerPanel.add(trials.get(currentIndex), BorderLayout.CENTER);
@@ -296,7 +302,7 @@ public class Display extends JPanel {//change it to extends Game panel later
   showAnswerButton.addActionListener(new ActionListener() {
     public void actionPerformed(ActionEvent evt) {
       System.out.println("show pressed");
-      
+      // show what is behind each door
       trials.get(currentIndex).showBehindDoors(); 
       revalidate();
       repaint();

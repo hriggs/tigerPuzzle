@@ -56,6 +56,8 @@ public class Door extends JPanel
      */
     public Door()
     {
+      hasLover = false;
+      
         try {
             doorImage = new ImageIcon("../images/door.gif");
         }
@@ -107,7 +109,7 @@ public class Door extends JPanel
     /**
      * Draws a different image when the door is open. It is done by making the door as buttons.
      */
-    private class doorButton implements ActionListener{ 
+    private class doorButton implements ActionListener { 
        
       Sound sound = new Sound();
 
@@ -184,9 +186,9 @@ public class Door extends JPanel
     /**
      * Sets whether or not the door has a lover or tiger behind it.
      */
-    public void setHasLover(boolean hasLover) 
+    public void setHasLover(boolean b) 
     {
-        this.hasLover = hasLover; 
+        hasLover = b; 
     }
     
     /**
@@ -194,5 +196,10 @@ public class Door extends JPanel
      */
     public void setDoorNum(String num) {
       doorLabel.setText("Door No. " + num);
+    }
+    
+    public boolean hasLover() {
+      System.out.print(hasLover);
+      return hasLover;
     }
 }
