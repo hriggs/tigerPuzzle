@@ -58,7 +58,7 @@ public class Door extends JPanel
     public Door(boolean b)
     {
         try {
-            doorImage = new ImageIcon("./images/door.gif");
+            doorImage = new ImageIcon("../images/door.gif");
         }
         catch (Exception e) {
             System.out.println("Door image file not found");

@@ -17,6 +17,8 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.imageio.ImageIO; 
+import java.awt.image.BufferedImage;
 
 /**
  * The Display class... To do: description  
@@ -27,23 +29,20 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Display extends JPanel {//change it to extends Game panel later
   
+  // keep track of trials
   private ArrayList<Trial> trials;
   private int currentIndex; 
  
-  
   // components
   private JPanel southPanel;
   private JTextArea directions;
   private Image img1,img2;
   
   private Sound sound;
-  
-    
-
 
   /**
    * Constructor for objects of type Trial. 
-     * @throws javax.sound.sampled.LineUnavailableException
+   * @throws javax.sound.sampled.LineUnavailableException
    */
   public Display() throws LineUnavailableException {
     trials = new ArrayList<>(); 
@@ -53,9 +52,23 @@ public class Display extends JPanel {//change it to extends Game panel later
 
     // read file to create trials
     readFile("file name goes here");
+    
+    sound = null; 
+    
+    
     //plays sound effects
-    sound = new Sound();
-    sound.playSound("cave");
+    try {
+      
+      sound = new Sound();
+    //sound.playSound("cave");
+    } catch (Exception e) {
+      System.out.println("Sound could not be played/");
+    }
+    
+    //sound = new Sound();
+    //sound.playSound("cave");
+    
+    
     // display 1st trial
     add(trials.get(currentIndex), BorderLayout.CENTER);
   
@@ -122,7 +135,7 @@ public class Display extends JPanel {//change it to extends Game panel later
     
     // create panel south panel
    
-    ImageIcon img = new ImageIcon("./images/prison.png");
+    ImageIcon img = new ImageIcon("../images/prison.png");
      southPanel = new JPanel();
      southPanel.setBackground(Color.black);
      southPanel.setLayout(new BorderLayout());
@@ -144,7 +157,7 @@ public class Display extends JPanel {//change it to extends Game panel later
   private void createButtons() {
     // buttons in own panel in south
     
-    ImageIcon img = new ImageIcon("./images/prison.png");
+    final ImageIcon img = new ImageIcon("../images/prison.png");
     JPanel btnPanel = new JPanel(){
        
             protected void paintComponent(Graphics g) {
@@ -232,7 +245,7 @@ public class Display extends JPanel {//change it to extends Game panel later
    */
   private void createTitle() {
     //JPanel northPanel = new JPanel();
-     final ImageIcon img4 = new ImageIcon("./images/prison.png");
+     final ImageIcon img4 = new ImageIcon("../images/prison.png");
     JPanel northPanel = new JPanel(){ 
        
     protected void paintComponent(Graphics g) {
@@ -258,8 +271,42 @@ public class Display extends JPanel {//change it to extends Game panel later
     
     
   }
-
   
+  /*@Override
+  protected void paintComponent(Graphics g) {
+    
+    System.out.println("hello");
+    
+    BufferedImage bgImage = null;
+    
+    try {
+    bgImage = ImageIO.read(new File("../images/prison.png"));
+} catch (IOException e) {
+  System.out.println("bg image not found");
+}
 
+    super.paintComponent(g);
+    g.drawImage(bgImage, 0, 0, null);
+}*/
   
+  /**
+   * Main method for testing purposes.
+   */
+  public static void main(String[] args)  {
+    
+   JFrame frame = new JFrame();
+   
+   Display display = null; 
+   
+   try {
+     display = new Display();
+   }
+   catch (Exception e) {
+     System.out.println("display could not be created.");
+   }
+   
+   frame.add(display); 
+   frame.pack();
+   frame.setVisible(true); 
+ }
 }
