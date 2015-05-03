@@ -19,6 +19,8 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.imageio.ImageIO; 
 import java.awt.image.BufferedImage;
+import java.util.Scanner;
+import java.io.FileNotFoundException;
 
 /**
  * The Display class... To do: description  
@@ -45,13 +47,13 @@ public class Display extends JPanel {//change it to extends Game panel later
    * @throws javax.sound.sampled.LineUnavailableException
    */
   public Display() throws LineUnavailableException {
-    trials = new ArrayList<>(); 
+    trials = new ArrayList<Trial>(); 
     currentIndex = 0; 
     
     setComponents(); 
 
     // read file to create trials
-    readFile("file name goes here");
+    readFile("../text/tigerText.txt");
     
     //plays sound effects
     sound = null;
@@ -69,33 +71,107 @@ public class Display extends JPanel {//change it to extends Game panel later
   /**
    * Read the file at the given path to add puzzle text.
    * 
-   * @param  text  path of file
+   * @param  fileString  path of file
    */
-  public void readFile(String text) {
-    for (int i = 1; i < 5; i++) {
-      // create trial
+  public void readFile(String fileString) {
+    File file = new File(fileString);
+    Scanner scanner = null; 
+
+    //access file
+    try {
+      scanner = new Scanner(file);
+    } catch (FileNotFoundException e) {
+      System.out.println("Text file not found.");
+    }
+    
+     // read line by line
+     scanner.useDelimiter(System.getProperty("line.separator"));
+     String line ="";
+     
+     String directText = "";
+     String jStartText = "";
+     int trialNum = 0;
+     
+     // find directions start marker
+     do {
+       // if more lines in file, go to next line
+       if (scanner.hasNext()) {
+         line = scanner.nextLine(); 
+       } else
+       {
+         break; 
+       }
+     } while (!line.equals("DSTART"));
+     
+     // until end of directions found
+     while (scanner.hasNext() && !line.equals("DEND")) {
+       line = scanner.nextLine(); 
+       
+       // add more directions text
+       if (!line.equals("DEND")) {
+         directText += line;
+       }
+     }
+     
+     // set directions 
+    directions.append(directText);
+    
+    // find jailer start speech marker
+    do {
+      // if more lines in file, go to next line
+      if (scanner.hasNext()) {
+        line = scanner.nextLine(); 
+      } else
+      {
+        break; 
+      }
+    } while (!line.equals("JSTART"));
+    
+    // until end of jailer speech found
+    while (scanner.hasNext() && !line.equals("JEND")) {
+      line = scanner.nextLine(); 
+       
+      // add more of jailer's text
+      if (!line.equals("JEND")) {
+        jStartText += line;
+      }
+    }
+   
+    // find trial start marker
+    do {
+      // if more lines in file, go to next line
+      if (scanner.hasNext()) {
+        line = scanner.nextLine(); 
+      } else
+      {
+        break; 
+      }
+    } while (!line.equals("TSTART"));
+    
+    // get number of trials
+    trialNum = Integer.parseInt(scanner.nextLine());
+    
+    // for every trial
+    for (int i = 0; i < trialNum; i++) {
+      
+      // create new trial
       Trial trial = new Trial(new Door(), new Door(), new Jailer(), i);
       
+      // set door text
+      trial.setDoorText(scanner.nextLine(), 1); 
+      trial.setDoorText(scanner.nextLine(), 2);
+      
       // set jailer text
-      trial.setJailerStartText("Jailer's start text here");
-      trial.setJailerTrialText("Jailer's text goes here. Trial number: " + i);
-      
-      // set doors' text
-      trial.setDoorText("door 1 text", 1); 
-      trial.setDoorText("door 2 text", 2);
-      
+      trial.setJailerStartText(jStartText);
+      trial.setJailerTrialText(scanner.nextLine());
+
       // set what is behind each door
-      trial.setDoorHasLover(true, 1);
-      trial.setDoorHasLover(false, 2);
+      trial.setDoorHasLover(Boolean.parseBoolean(scanner.nextLine()), 1);
+      trial.setDoorHasLover(Boolean.parseBoolean(scanner.nextLine()), 2);
       
       // add trial to list
       trials.add(trial);
     }
-    
-    // set directions from file
-    directions.setBackground(Color.black);
-    directions.setForeground(Color.getHSBColor(50, 54, 54));
-    directions.append("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
   }
   
   /**
@@ -203,11 +279,13 @@ public class Display extends JPanel {//change it to extends Game panel later
     directTitle.setForeground(Color.getHSBColor(50, 54, 54));
     southPanel.add(directTitle, BorderLayout.NORTH);
     
-    // set direction text 
+    // set directions styling
     directions = new JTextArea("");
     directions.setEditable(false);
     directions.setWrapStyleWord(true);
     directions.setLineWrap(true);
+    directions.setBackground(Color.black);
+    directions.setForeground(Color.getHSBColor(50, 54, 54));
   
     // add directions to south panel
    southPanel.add(directions, BorderLayout.CENTER); 

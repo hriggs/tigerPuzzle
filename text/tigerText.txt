@@ -1,0 +1,45 @@
+DSTART
+Directions at bottom go here
+DEND
+
+JSTART
+Jailer start speech goes here.
+JEND
+
+TSTART
+7
+In this room there is one of your true loves, and in the other room there is a tiger.
+In one of these rooms there sits one of your true loves, and in one of these rooms there is a tiger.
+One of the statements is true and one is false!
+false
+true
+A tiger is in the other room.
+At least one of these rooms contains a true love.
+The two statements are either both true or both false.
+true
+false
+Either a tiger is in this room or your true love is in the other room.
+There is a tiger in one room and your true love in the other room.
+Either both are true or both are false.
+false
+true
+At least one room contains a true love.
+This room contains a tiger.
+If a true love is behind door one, then both signs are false, but if a true love is not behind door one, then the sign on that door is true!
+false
+true
+Both rooms contain true loves.
+Both rooms contain true loves.
+If a true love is behind the first door then the sign on that door is true, otherwise it is false, and if a true love is behind the second door then the sign on that door is true, otherwise it is false.
+true
+true
+It makes no difference which door you pick.
+There is a true love behind the other door.
+If a true love is behind the first door then the statement on that door is false, otherwise it is true, and if a true love is behind the second door then the sign on that door is true, otherwise it is false.
+false
+false
+A tiger is not here.
+A true love is here.
+Both signs are false!
+false
+false
