@@ -29,6 +29,7 @@ public class Trial extends JPanel
   public Trial(Door d1, Door d2, Jailer j, int trialNum) {
     setLayout(new BorderLayout()); 
     trialLabel = new JLabel("Trial No. " + trialNum);
+    trialLabel.setForeground(Color.getHSBColor(50, 54, 54));
     trialLabel.setFont(new Font("Sans-serif", Font.BOLD, 15));
     
     doorOne = d1;
@@ -143,5 +144,13 @@ public class Trial extends JPanel
     {
       doorTwo.setDoorNum(num);
     }
+  }
+  
+  /**
+   * 
+   */
+  public void showBehindDoors() {
+    doorOne.showBehindDoor();
+    doorTwo.showBehindDoor(); 
   }
 }

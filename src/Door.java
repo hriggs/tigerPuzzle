@@ -141,6 +141,37 @@ public class Door extends JPanel
      }
 }
     
+    public void showBehindDoor() {
+      Sound sound = new Sound();
+      
+       if(hasLover) {
+          loverImage = new ImageIcon ("../images/loverImage.gif");
+          label2 = new JLabel(loverImage);
+          add(label2,BorderLayout.NORTH);
+          d1.setVisible(false);
+          //calls the sound method in Sound Class
+          try {
+             sound.playSound("love");
+          } catch (LineUnavailableException ex) {
+            Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          revalidate();
+          repaint();
+        } else {
+          tigerImage = new ImageIcon ("../images/tigerImage.gif");
+          label2 = new JLabel(tigerImage);
+          add(label2,BorderLayout.NORTH);
+          d1.setVisible(false);
+          try {
+            sound.playSound("tiger");
+          } catch (LineUnavailableException ex) {
+             Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        revalidate();
+        repaint();
+        }
+    }
+    
     /**
      * Sets the text underneath the door.
      */

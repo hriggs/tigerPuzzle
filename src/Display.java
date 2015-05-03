@@ -40,6 +40,7 @@ public class Display extends JPanel {//change it to extends Game panel later
   private JPanel southPanel, centerPanel;
   private JTextArea directions;
   private Image img1,img2;
+  private JPanel centerLower; 
   
   private Sound sound;
 
@@ -76,107 +77,6 @@ public class Display extends JPanel {//change it to extends Game panel later
    * @param  fileString  path of file
    */
   public void readFile(String fileString) {
-   /* File file = new File(fileString);
-    Scanner scanner = null; 
-
-    //access file
-    try {
-      scanner = new Scanner(file);
-    } catch (FileNotFoundException e) {
-      System.out.println("Text file not found.");
-    }
-    
-     // read line by line
-     scanner.useDelimiter(System.getProperty("line.separator"));
-     String line = "";
-     
-     String directText = "";
-     String jStartText = "";
-     
-     // find directions start marker
-     do {
-       // if more lines in file, go to next line
-       if (scanner.hasNext()) {
-         line = scanner.nextLine(); 
-       } else
-       {
-         break; 
-       }
-     } while (!line.equals("DSTART"));
-     
-     // until end of directions found
-     while (scanner.hasNext() && !line.equals("DEND")) {
-       line = scanner.nextLine(); 
-       
-       // add more directions text
-       if (!line.equals("DEND")) {
-         directText += line;
-       }
-     }
-     
-     // set directions 
-    directions.append(directText);
-    
-    // find jailer start speech marker
-    do {
-      // if more lines in file, go to next line
-      if (scanner.hasNext()) {
-        line = scanner.nextLine(); 
-      } else
-      {
-        break; 
-      }
-    } while (!line.equals("JSTART"));
-    
-    // until end of jailer speech found
-    while (scanner.hasNext() && !line.equals("JEND")) {
-      line = scanner.nextLine(); 
-       
-      // add more of jailer's text
-      if (!line.equals("JEND")) {
-        jStartText += line;
-      }
-    }
-   
-    // find trial start marker
-    do {
-      // if more lines in file, go to next line
-      if (scanner.hasNext()) {
-        line = scanner.nextLine(); 
-      } else
-      {
-        break; 
-      }
-    } while (!line.equals("TSTART"));
-    
-    // get number of trials
-    trialNum = Integer.parseInt(scanner.nextLine());
-    
-    // for every trial
-    //int num = trialNum + 1; 
-    for (int i = 0; i <= trialNum; i++) {
-      
-      // create new trial
-      Trial trial = new Trial(new Door(), new Door(), new Jailer(), i);
-      
-      // set door text
-      trial.setDoorText(scanner.nextLine(), 1); 
-      trial.setDoorText(scanner.nextLine(), 2);
-      
-      // set jailer text
-      trial.setJailerStartText(jStartText);
-      trial.setJailerTrialText(scanner.nextLine());
-
-      // set what is behind each door
-      trial.setDoorHasLover(Boolean.parseBoolean(scanner.nextLine()), 1);
-      trial.setDoorHasLover(Boolean.parseBoolean(scanner.nextLine()), 2);
-      
-      trial.setDoorNum("One", 1);
-      trial.setDoorNum("Two", 2);
-      
-      // add trial to list
-      trials.add(trial);
-    }*/
      File file = new File(fileString);
      Scanner scanner = null;
      //access file
@@ -239,10 +139,13 @@ public class Display extends JPanel {//change it to extends Game panel later
          break;
        }
      } while (!line.equals("TSTART"));
+     
      // get number of trials
      trialNum = Integer.parseInt(scanner.nextLine());
+     int num = trialNum + 1;
+     
      // for every trial
-     for (int i = 0; i < trialNum; i++) {
+     for (int i = 1; i < num; i++) {
        // create new trial
        Trial trial = new Trial(new Door(), new Door(), new Jailer(), i);
        
@@ -305,7 +208,7 @@ public class Display extends JPanel {//change it to extends Game panel later
     JLabel resultsText = new JLabel("Will you choose right?");
     JLabel scoreLabel = new JLabel("Correct: 0/7");
     
-    JPanel centerLower = new JPanel();
+    centerLower = new JPanel();
     centerLower.setOpaque(false);
     centerLower.add(refuseButton);
     centerLower.add(resultsText);
@@ -345,19 +248,23 @@ public class Display extends JPanel {//change it to extends Game panel later
             currentIndex++;
 
             // display next trial
-            remove(trials.get(currentIndex - 1));
+            /*remove(trials.get(currentIndex - 1));
             add(trials.get(currentIndex));
+            centerPanel.add(trials.get(currentIndex), BorderLayout.CENTER);
             revalidate();
             repaint();
-            System.out.println("next trial: " + currentIndex);
+            System.out.println("next trial: " + currentIndex);*/
+            remove(centerPanel);
+            centerPanel.add(trials.get(currentIndex - 1), BorderLayout.CENTER);
+            add(centerPanel, BorderLayout.CENTER);
+            revalidate();
+            repaint();
           }
         }
       });
     
     // add buttons to panels
     btnPanel.add(nextButton);
-  
-  
     southPanel.add(btnPanel, BorderLayout.SOUTH);
 
   JButton startOverButton = new JButton("Start Over");
@@ -372,6 +279,12 @@ public class Display extends JPanel {//change it to extends Game panel later
       repaint();
       currentIndex = 0;
       System.out.println(currentIndex);*/
+      remove(centerPanel);
+      currentIndex = 0;
+      centerPanel.add(trials.get(currentIndex), BorderLayout.CENTER);
+      add(centerPanel, BorderLayout.CENTER);
+      revalidate();
+      repaint();
     }
   });
   // add buttons to panels
@@ -382,7 +295,11 @@ public class Display extends JPanel {//change it to extends Game panel later
   // add event listent to "show answer" button
   showAnswerButton.addActionListener(new ActionListener() {
     public void actionPerformed(ActionEvent evt) {
-
+      System.out.println("show pressed");
+      
+      trials.get(currentIndex).showBehindDoors(); 
+      revalidate();
+      repaint();
     }
   });
 
