@@ -95,7 +95,43 @@ public class Trial extends JPanel
    * 
    * @param  text  new text to be given to jailer
    */
-  public void setJailerText(String text) {
+  public void setJailerTrialText(String text) {
     jailer.setTrialText(text);
+  }
+  
+  /**
+   * Set text of the jailer.
+   * 
+   * @param  text  new text to be given to jailer
+   */
+  public void setJailerStartText(String text) {
+    jailer.setStartText(text);
+  }
+  
+  /**
+   * 
+   */
+  public void setDoorText(String text, int doorNum) {
+    // set the text of the specified door
+    if (doorNum == 1) {
+      doorOne.setText(text);
+    } else
+    {
+      doorTwo.setText(text);
+    }
+  }
+  
+  /**
+   * 
+   */
+  public void setDoorHasLover(boolean hasLover, int doorNum) {
+     // set if the specified door has a lover or tiger behind it
+    if (doorNum == 1) {
+      doorOne.setHasLover(hasLover);
+    } else
+    {
+      doorTwo.setHasLover(hasLover);
+    }
+    
   }
 }

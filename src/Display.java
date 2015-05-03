@@ -53,28 +53,15 @@ public class Display extends JPanel {//change it to extends Game panel later
     // read file to create trials
     readFile("file name goes here");
     
-    sound = null; 
-    
-    
     //plays sound effects
-    try {
-      
-      sound = new Sound();
+    sound = null;
+    sound = new Sound();
     //sound.playSound("cave");
-    } catch (Exception e) {
-      System.out.println("Sound could not be played/");
-    }
-    
-    //sound = new Sound();
-    //sound.playSound("cave");
-    
     
     // display 1st trial
     add(trials.get(currentIndex), BorderLayout.CENTER);
   
-   
     // set size
-    // width must be 800 by 600 (width by height) according to frame team
     // will be set by referring to contasts in frame team class
     setPreferredSize(new Dimension(800, 600));
   }
@@ -85,35 +72,21 @@ public class Display extends JPanel {//change it to extends Game panel later
    * @param  text  path of file
    */
   public void readFile(String text) {
-    
-    // In reality this will read from a file, but for testing purposes text is hardcoded
-    // imagining 4 trials in this case
-    
     for (int i = 1; i < 5; i++) {
-      boolean a = true;
-      boolean b = false;
-      if(i==1){
-          a=true;
-          b=false;
-      }
-      else if(i==2){
-          a=true;
-          b=true; 
-      }
-      else if(i==3){
-          a=true;
-          b=false; 
-      }
-      else if(i==4){
-          a=false;
-          b=true; 
-      }
       // create trial
-      Trial trial = new Trial(new Door(a), new Door(b), new Jailer(), i);
+      Trial trial = new Trial(new Door(), new Door(), new Jailer(), i);
       
-      // set text
-     
-      trial.setJailerText("Jailer's text goes here. Trial number: " + i);
+      // set jailer text
+      trial.setJailerStartText("Jailer's start text here");
+      trial.setJailerTrialText("Jailer's text goes here. Trial number: " + i);
+      
+      // set doors' text
+      trial.setDoorText("door 1 text", 1); 
+      trial.setDoorText("door 2 text", 2);
+      
+      // set what is behind each door
+      trial.setDoorHasLover(true, 1);
+      trial.setDoorHasLover(false, 2);
       
       // add trial to list
       trials.add(trial);
@@ -271,23 +244,6 @@ public class Display extends JPanel {//change it to extends Game panel later
     
     
   }
-  
-  /*@Override
-  protected void paintComponent(Graphics g) {
-    
-    System.out.println("hello");
-    
-    BufferedImage bgImage = null;
-    
-    try {
-    bgImage = ImageIO.read(new File("../images/prison.png"));
-} catch (IOException e) {
-  System.out.println("bg image not found");
-}
-
-    super.paintComponent(g);
-    g.drawImage(bgImage, 0, 0, null);
-}*/
   
   /**
    * Main method for testing purposes.

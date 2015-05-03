@@ -44,18 +44,11 @@ public class Door extends JPanel
     private Image img;
     
     private Sound sound;
-    /**
-     * Constructor for objects of class 
-     */
-    public Door(int x, int y, int width, int heigh)
-    {
-
-    }
     
     /**
      * Constructor for objects of class 
      */
-    public Door(boolean b)
+    public Door()
     {
         try {
             doorImage = new ImageIcon("../images/door.gif");
@@ -79,7 +72,7 @@ public class Door extends JPanel
         doorLabel.setBackground(Color.black);
         doorLabel.setForeground(Color.getHSBColor(50, 54, 54));
 
-        txtArea = new JTextArea(" hola");
+        txtArea = new JTextArea();
         txtArea.setFont(new Font("Serif", Font.BOLD, 10));
         txtArea.setEditable(false);
         txtArea.setOpaque(false);
@@ -101,9 +94,6 @@ public class Door extends JPanel
         add(doorLabel, BorderLayout.CENTER);
         add(txtArea, BorderLayout.SOUTH);
         setBackground(Color.black);
-        
-       hasLover=b;
-       System.out.print(b);
     }
 
     /**
@@ -123,109 +113,49 @@ public class Door extends JPanel
        Sound sound = new Sound();
 
      public void actionPerformed(ActionEvent evt) {
-        if(hasLover == false)
-        {
-       
-        loverImage = new ImageIcon ("./images/loverImage.gif");
-        label2 = new JLabel(loverImage);
-        add(label2,BorderLayout.NORTH);
-        d1.setVisible(false);
-        //calls the sound method in Sound Class
-            try {
-               
-                sound.playSound("love");
-            } catch (LineUnavailableException ex) {
-                Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if(hasLover == true) {
+          loverImage = new ImageIcon ("../images/loverImage.gif");
+          label2 = new JLabel(loverImage);
+          add(label2,BorderLayout.NORTH);
+          d1.setVisible(false);
+          //calls the sound method in Sound Class
+          try {
+             sound.playSound("love");
+          } catch (LineUnavailableException ex) {
+            Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          revalidate();
+          repaint();
+        } else {
+          tigerImage = new ImageIcon ("../images/tigerImage.gif");
+          label2 = new JLabel(tigerImage);
+          add(label2,BorderLayout.NORTH);
+          d1.setVisible(false);
+          try {
+            sound.playSound("tiger");
+          } catch (LineUnavailableException ex) {
+             Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
+          }
         revalidate();
         repaint();
         }
-        else 
-        {
-        tigerImage = new ImageIcon ("./images/tigerImage.gif");
-        label2 = new JLabel(tigerImage);
-        add(label2,BorderLayout.NORTH);
-         d1.setVisible(false);
-         try {
-               
-                sound.playSound("tiger");
-            } catch (LineUnavailableException ex) {
-                Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
-        revalidate();
-        repaint();
-        }
-     
+     }
 }
-    }
     
     /**
-     * to pass the text
+     * Sets the text underneath the door.
      */
     public void setText(String doorText)
     {
         add(txtArea);
-       
+        txtArea.append(doorText);
     }
-   
     
     /**
-     * main method creates a frame to add the panel and paint the label
+     * Sets whether or not the door has a lover or tiger behind it.
      */
-    /*public static void main(String args[])
+    public void setHasLover(boolean hasLover) 
     {
-        JFrame frame = new JFrame();
-        
-        //creatring the text Area zone
-        JTextArea txtArea = new JTextArea(5,10);
-        //txtArea.append(reader());
-        txtArea.setBackground(Color.blue);
-        //txtArea.setFont(new Font("Serif", Font.ITALIC, 20));
-        //txtArea.setForeground(new Color(28, 94, 161));
-        txtArea.setEditable(false);
-        //add(txtArea);
-        
-        Door door = new Door();
-        JPanel panel = new JPanel();
-        panel.add(door);
-        panel.add(txtArea);
-        panel.setBackground(Color.yellow); //para prueba
-        frame.add(panel);
-   
-        frame.pack();
-        frame.setSize(800,800);
-        frame.setVisible(true); 
-    }*/
-    
-    /**
-     * opens the file for the clues, and read it, returns a tring with the content of the file
-     **/
-   /* public static String reader()
-    {
-        String s = "";
-        try {
-            //open the file
-            File file = new File("trial.txt");
-            //reads the file
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            StringBuffer stringBuffer = new StringBuffer();
-            String line;
-            //reads line by line
-            while ((line = bufferedReader.readLine()) != null) 
-            {
-                stringBuffer.append(line);
-                stringBuffer.append("\n");
-            }
-            fileReader.close();
-            //string that saves the content from the file
-            s = stringBuffer.toString();
-        }
-        catch (IOException e) 
-        {
-            e.printStackTrace();
-        }
-        return s;
-    }*/
+        this.hasLover = hasLover; 
+    }
 }
