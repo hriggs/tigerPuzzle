@@ -22,11 +22,13 @@ public class Trial extends JPanel
   private Door doorOne, doorTwo;
   private Jailer jailer;
   private Image img1,img2;
+  private int trialNum;
   
   /**
    * Constructor for objects of type Trial. 
    */
-  public Trial(Door d1, Door d2, Jailer j, int trialNum) {
+  public Trial(Door d1, Door d2, Jailer j, int n) {
+    trialNum = n;
     setLayout(new BorderLayout()); 
     trialLabel = new JLabel("Trial No. " + trialNum);
     trialLabel.setForeground(Color.getHSBColor(50, 54, 54));
@@ -159,11 +161,9 @@ public class Trial extends JPanel
    */
   public boolean bothHaveTigers() {
     if (doorOne.hasLover() || doorTwo.hasLover()) {
-      System.out.println("has lovers");
       return false; 
     } else
     {
-      System.out.println("has 2 tigers");
     return true; 
     }
   }

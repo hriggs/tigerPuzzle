@@ -21,7 +21,7 @@ import javax.sound.sampled.LineUnavailableException;
 public class Door extends JPanel
 {
     // the statment for the user to read
-    private String text;
+    //private String text;
     
     // text area where the statements are printing 
     private JTextArea txtArea;
@@ -38,25 +38,33 @@ public class Door extends JPanel
     private ImageIcon loverImage;
     
     //label for each of the images
-    private JLabel label;
-    private JLabel label1;
+    //private JLabel label;
+    //private JLabel label1;
     private JLabel label2;
 
     private JLabel doorLabel;
-    private JButton d1,d2;
+    private JButton d1;
+      //,d2;
     private Image img;
     private Sound sound;
     
     // door number label string
     private String labelText;
     
+    private boolean doorClicked;
+    
+    private Display display;
+    
     
     /**
      * Constructor for objects of class 
      */
-    public Door()
+    public Door(Display d)
     {
       hasLover = false;
+      doorClicked = false;
+      
+      display = d;
       
         try {
             doorImage = new ImageIcon("../images/door.gif");
@@ -98,7 +106,7 @@ public class Door extends JPanel
         setOpaque(false);
         
         //add(topPanel, BorderLayout.NORTH);
-        add(d1,BorderLayout.NORTH);
+        add(d1, BorderLayout.NORTH);
         d1.addActionListener(new doorButton());
         
         //add(doorLabel, BorderLayout.CENTER);
@@ -114,10 +122,12 @@ public class Door extends JPanel
       Sound sound = new Sound();
 
      public void actionPerformed(ActionEvent evt) {
-        if(hasLover == true) {
+
+        if(hasLover) {
           loverImage = new ImageIcon ("../images/loverImage.gif");
           label2 = new JLabel(loverImage);
           add(label2,BorderLayout.NORTH);
+          //remove(d1);
           d1.setVisible(false);
           //calls the sound method in Sound Class
           try {
@@ -125,6 +135,12 @@ public class Door extends JPanel
           } catch (LineUnavailableException ex) {
             Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
           }
+          
+          // update score
+          if (!doorClicked) {
+            display.increaseScore(true);
+          }
+          
           revalidate();
           repaint();
         } else {
@@ -137,9 +153,17 @@ public class Door extends JPanel
           } catch (LineUnavailableException ex) {
              Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
           }
+          
+          // update score
+          if (!doorClicked) {
+            display.increaseScore(false);
+          }
+          
         revalidate();
         repaint();
         }
+        
+        doorClicked = true;
      }
 }
     
@@ -201,5 +225,16 @@ public class Door extends JPanel
     public boolean hasLover() {
       System.out.print(hasLover);
       return hasLover;
+    }
+    
+    public boolean wasClicked() {
+      return doorClicked; 
+    }
+    
+    public Door getDoor() {
+      return this;
+    }
+    
+    public void actionPerformed(ActionEvent evt) {
     }
 }

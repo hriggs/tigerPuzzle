@@ -21,6 +21,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
+import java.awt.event.MouseAdapter; 
+import java.awt.event.MouseEvent;
 
 /**
  * The Display class... To do: description  
@@ -36,6 +38,7 @@ public class Display extends JPanel {//change it to extends Game panel later
   private int currentIndex; 
   private int trialNum;
   private int numCorrect;
+  private boolean chosenAnswer;
  
   // components
   private JPanel southPanel, centerPanel;
@@ -54,8 +57,8 @@ public class Display extends JPanel {//change it to extends Game panel later
   public Display() throws LineUnavailableException {
     trials = new ArrayList<Trial>(); 
     currentIndex = 0; 
-    trialNum = 0; 
     numCorrect = 0;
+    chosenAnswer = false;
     
     setComponents(); 
 
@@ -73,6 +76,8 @@ public class Display extends JPanel {//change it to extends Game panel later
     // set size
     // will be set by referring to contasts in frame team class
     setPreferredSize(new Dimension(800, 600));
+    
+    System.out.println(trialNum);
   }
   
   /**
@@ -94,7 +99,6 @@ public class Display extends JPanel {//change it to extends Game panel later
      String line ="";
      String directText = "";
      String jStartText = "";
-     int trialNum = 0;
      // find directions start marker
      do {
      // if more lines in file, go to next line
@@ -146,12 +150,13 @@ public class Display extends JPanel {//change it to extends Game panel later
      
      // get number of trials
      trialNum = Integer.parseInt(scanner.nextLine());
+     System.out.println(trialNum);
      int num = trialNum + 1;
      
      // for every trial
      for (int i = 1; i < num; i++) {
        // create new trial
-       Trial trial = new Trial(new Door(), new Door(), new Jailer(), i);
+       Trial trial = new Trial(new Door(this), new Door(this), new Jailer(), i);
        
        // set door text
        trial.setDoorText(scanner.nextLine(), 1);
@@ -167,7 +172,7 @@ public class Display extends JPanel {//change it to extends Game panel later
        
        trial.setDoorNum("One", 1);
        trial.setDoorNum("Two", 2);
-       
+
        // add trial to list
        trials.add(trial);
 }
@@ -210,6 +215,7 @@ public class Display extends JPanel {//change it to extends Game panel later
     // create components for bottom half of center panel
     resultsText = new JLabel("Will you choose right?");
     scoreLabel = new JLabel("Correct: 0/" + trialNum);
+    
     JButton refuseButton = new JButton("I choose Neither!");
     refuseButton.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent evt) {
@@ -261,15 +267,16 @@ public class Display extends JPanel {//change it to extends Game panel later
           // check if another trial
           if (!(currentIndex + 1 >= trials.size()))
           {
-            // increment current index
-            currentIndex++;
+            chosenAnswer = false;
             
             resultsText.setText("Will you choose right?");
 
-            // reset panel
-            remove(centerPanel);
-            centerPanel.add(trials.get(currentIndex - 1), BorderLayout.CENTER);
-            add(centerPanel, BorderLayout.CENTER);
+            centerPanel.remove(trials.get(currentIndex));
+            
+            // increment current index
+            currentIndex++;
+            
+            centerPanel.add(trials.get(currentIndex), BorderLayout.CENTER);
             revalidate();
             repaint();
           }
@@ -297,7 +304,7 @@ public class Display extends JPanel {//change it to extends Game panel later
   btnPanel.add(startOverButton);
   southPanel.add(btnPanel, BorderLayout.SOUTH);
   
-  JButton showAnswerButton = new JButton("Show Answer");
+  JButton showAnswerButton = new JButton("Show Behind Doors");
   // add event listent to "show answer" button
   showAnswerButton.addActionListener(new ActionListener() {
     public void actionPerformed(ActionEvent evt) {
@@ -362,6 +369,21 @@ public class Display extends JPanel {//change it to extends Game panel later
     northPanel.add(title);
     add(northPanel, BorderLayout.NORTH); 
   }
+  
+  public void increaseScore(boolean b) {
+    
+    if (chosenAnswer) {
+      return;
+    }
+    
+    if (b) {
+      numCorrect++;
+      scoreLabel.setText("Score: " + numCorrect + "/" + trialNum);
+    } else {
+      chosenAnswer = true;
+    }
+  }
+ 
   
   /**
    * Main method for testing purposes.
