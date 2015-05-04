@@ -28,7 +28,7 @@ public class Jailer extends JPanel{
       setBackground(Color.black);
       
        try {
-         img1 = ImageIO.read(new File("../images/master_2.gif"));
+         img1 = ImageIO.read(new File("./images/master_2.gif"));
        }
        catch (Exception e) {
          System.out.println("Image file not found");

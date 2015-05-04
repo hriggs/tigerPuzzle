@@ -63,7 +63,7 @@ public class Display extends JPanel {//change it to extends Game panel later
     setComponents(); 
 
     // read file to create trials
-    readFile("../text/tigerText.txt");
+    readFile("./text/tigerText.txt");
     
     //plays sound effects
     sound = null;
@@ -187,7 +187,7 @@ public class Display extends JPanel {//change it to extends Game panel later
     createTitle();
     
     // create south panel
-    ImageIcon img = new ImageIcon("../images/prison.png");
+    ImageIcon img = new ImageIcon("./images/prison.png");
     southPanel = new JPanel();
     southPanel.setBackground(Color.black);
     southPanel.setLayout(new BorderLayout());
@@ -248,7 +248,7 @@ public class Display extends JPanel {//change it to extends Game panel later
   private void createButtons() {
     // buttons in own panel in south
     
-    final ImageIcon img = new ImageIcon("../images/prison.png");
+    final ImageIcon img = new ImageIcon("./images/prison.png");
     JPanel btnPanel = new JPanel(){
        
             protected void paintComponent(Graphics g) {
@@ -349,7 +349,7 @@ public class Display extends JPanel {//change it to extends Game panel later
    */
   private void createTitle() {
     //JPanel northPanel = new JPanel();
-     final ImageIcon img4 = new ImageIcon("../images/prison.png");
+     final ImageIcon img4 = new ImageIcon("./images/prison.png");
     JPanel northPanel = new JPanel(){ 
        
     protected void paintComponent(Graphics g) {

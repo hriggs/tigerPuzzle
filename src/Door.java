@@ -67,7 +67,7 @@ public class Door extends JPanel
       display = d;
       
         try {
-            doorImage = new ImageIcon("../images/door.gif");
+            doorImage = new ImageIcon("./images/door.gif");
         }
         catch (Exception e) {
             System.out.println("Door image file not found");
@@ -124,7 +124,7 @@ public class Door extends JPanel
      public void actionPerformed(ActionEvent evt) {
 
         if(hasLover) {
-          loverImage = new ImageIcon ("../images/loverImage.gif");
+          loverImage = new ImageIcon ("./images/loverImage.gif");
           label2 = new JLabel(loverImage);
           add(label2,BorderLayout.NORTH);
           //remove(d1);
@@ -144,7 +144,7 @@ public class Door extends JPanel
           revalidate();
           repaint();
         } else {
-          tigerImage = new ImageIcon ("../images/tigerImage.gif");
+          tigerImage = new ImageIcon ("./images/tigerImage.gif");
           label2 = new JLabel(tigerImage);
           add(label2,BorderLayout.NORTH);
           d1.setVisible(false);
@@ -171,7 +171,7 @@ public class Door extends JPanel
       Sound sound = new Sound();
       
        if(hasLover) {
-          loverImage = new ImageIcon ("../images/loverImage.gif");
+          loverImage = new ImageIcon ("./images/loverImage.gif");
           label2 = new JLabel(loverImage);
           add(label2,BorderLayout.NORTH);
           d1.setVisible(false);
@@ -184,7 +184,7 @@ public class Door extends JPanel
           revalidate();
           repaint();
         } else {
-          tigerImage = new ImageIcon ("../images/tigerImage.gif");
+          tigerImage = new ImageIcon ("./images/tigerImage.gif");
           label2 = new JLabel(tigerImage);
           add(label2,BorderLayout.NORTH);
           d1.setVisible(false);
